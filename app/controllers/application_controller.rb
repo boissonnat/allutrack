@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
   def writers_and_readers
     user_signed_in? ? "private" : "public"
   end
+
+  before_filter do
+    resource = controller_path.singularize.gsub('/', '_').to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
 end

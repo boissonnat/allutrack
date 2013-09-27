@@ -1,0 +1,25 @@
+<%- model_class = Project -%>
+<div class="page-header">
+  <h1><%=model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @project.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:text) %>:</strong></dt>
+  <dd><%= @project.text %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user) %>:</strong></dt>
+  <dd><%= @project.user.email %></dd>
+</dl>
+
+<div class="form-actions pull-right">
+  <%= link_to t('helpers.links.back'), projects_path, :class => 'btn btn-link'  %>
+  |
+  <%= link_to t('helpers.links.edit'), edit_project_path(@project), :class => 'btn btn-link' %>
+  |
+  <%= link_to t('helpers.links.destroy'),
+              project_path(@project),
+              :method => 'delete',
+              :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+              :class => 'btn btn-link' %>
+</div>
