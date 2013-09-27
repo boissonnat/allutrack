@@ -23,8 +23,18 @@
 
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to 'My projects', projects_path %></li>
-          <li><%= link_to 'My issues', issues_path %></li>
+          <li>
+            <%= link_to(projects_path) do %>
+                Projects
+                <span class="badge"><%=current_user.projects.count%></span>
+            <%end%>
+          </li>
+          <li>
+            <%= link_to(issues_path) do %>
+                Issues
+                <span class="badge"><%=current_user.issues.count%></span>
+            <%end%>
+          </li>
         </ul>
 
         <p class="navbar-text pull-right">

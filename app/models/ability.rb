@@ -14,5 +14,7 @@ class Ability
     end
 
     can :manage, Issue
+
+    can :manage, Comment
   end
 end

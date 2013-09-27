@@ -1,28 +1,57 @@
 <%- model_class = Issue -%>
 <div class="page-header">
-  <h1><%=model_class.model_name.human.titleize %></h1>
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-default">Actions</button>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><%= link_to t('helpers.links.back'), issues_path, :class => 'btn btn-link'  %></li>
+        <li><%= link_to t('helpers.links.edit'), edit_issue_path(@project), :class => 'btn btn-link' %></li>
+        <li><%= link_to t('helpers.links.destroy'),
+                    issue_path(@issue),
+                    :method => 'delete',
+                    :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+                    :class => 'btn btn-link' %></li>
+    </ul>
+  </div>
+
+  <h3><%=@issue.project.title%> - <%=model_class.model_name.human.titleize %> #<%=@issue.id%></h3>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @issue.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user) %>:</strong></dt>
-  <dd><%= @issue.user.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project) %>:</strong></dt>
-  <dd><%=link_to @issue.project.title, project_path(@issue.project)%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
-  <dd><%= @issue.body %></dd>
-
-</dl>
-
-<div class="form-actions pull-right">
-  <%= link_to t('helpers.links.back'), issues_path, :class => 'btn btn-link'  %>
-  |
-  <%= link_to t('helpers.links.edit'), edit_issue_path(@project), :class => 'btn btn-link' %>
-  |
-  <%= link_to t('helpers.links.destroy'),
-              issue_path(@issue),
-              :method => 'delete',
-              :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
-              :class => 'btn btn-link' %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%=@issue.title%><br/>
+      <small style="color: #ffffff"><%=@issue.user.email%> openened this issue the <%=@issue.created_at%></small>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%=@issue.body%>
+  </div>
 </div>
+
+<% @issue.comments.each do |comment| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <small><%=comment.user.email%> commented this issue the <%=@issue.created_at%></small>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <%=comment.body%>
+      </div>
+    </div>
+<%end%>
+
+<%= form_for([@issue, @issue.comments.build]) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, :class => 'form-control', :placeholder => 'Add your comment here' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit nil, :class => 'btn btn-default' %>
+    </div>
+<% end %>
+
+
