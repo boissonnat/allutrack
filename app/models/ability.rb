@@ -12,5 +12,7 @@ class Ability
     can :destroy, Project do |project|
       project.user
     end
+
+    can :manage, Issue
   end
 end

@@ -1,0 +1,28 @@
+<%- model_class = Issue -%>
+<div class="page-header">
+  <h1><%=model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @issue.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user) %>:</strong></dt>
+  <dd><%= @issue.user.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:project) %>:</strong></dt>
+  <dd><%= @issue.project.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
+  <dd><%= @issue.body %></dd>
+
+</dl>
+
+<div class="form-actions pull-right">
+  <%= link_to t('helpers.links.back'), issues_path, :class => 'btn btn-link'  %>
+  |
+  <%= link_to t('helpers.links.edit'), edit_issue_path(@project), :class => 'btn btn-link' %>
+  |
+  <%= link_to t('helpers.links.destroy'),
+              issue_path(@issue),
+              :method => 'delete',
+              :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+              :class => 'btn btn-link' %>
+</div>

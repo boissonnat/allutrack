@@ -1,0 +1,40 @@
+<%- model_class = Issue -%>
+<div class="page-header">
+  <h1><%=model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Created by</th>
+    <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <th><%= model_class.human_attribute_name(:title) %></th>
+    <th><%= model_class.human_attribute_name(:project) %></th>
+    <th><%=t('helpers.actions') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @issues.each do |issue| %>
+      <tr>
+        <td><%= issue.user.email %></td>
+        <td><%=l issue.created_at %></td>
+        <td><%= issue.id %></td>
+        <td><%= issue.title %></td>
+        <td><%= issue.project.title %></td>
+
+        <td>
+          <%= link_to t('helpers.links.show'), issue_path(issue) %>
+          |
+          <%= link_to t('helpers.links.edit'), edit_issue_path(issue) %>
+          |
+          <%= link_to t('helpers.links.destroy'),
+                      issue_path(issue),
+                      :method => :delete,
+                      :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') }%>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('helpers.links.new'), new_issue_path, :class => 'btn btn-primary pull-right' %>

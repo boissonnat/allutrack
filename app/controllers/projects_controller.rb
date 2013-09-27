@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
 
   # List
   def index
-    @projects = Project.where(user: current_user)
+    @projects = current_user.projects
   end
 
   ## Helper methods
