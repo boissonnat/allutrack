@@ -9,7 +9,7 @@
   <dt><strong><%= model_class.human_attribute_name(:user) %>:</strong></dt>
   <dd><%= @issue.user.email %></dd>
   <dt><strong><%= model_class.human_attribute_name(:project) %>:</strong></dt>
-  <dd><%= @issue.project.title %></dd>
+  <dd><%=link_to @issue.project.title, project_path(@issue.project)%></dd>
   <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
   <dd><%= @issue.body %></dd>
 

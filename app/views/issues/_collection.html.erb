@@ -16,11 +16,11 @@
   <tbody>
   <% @issues.each do |issue| %>
       <tr>
+        <td><%= issue.id %></td>
         <td><%= issue.user.email %></td>
         <td><%=l issue.created_at %></td>
-        <td><%= issue.id %></td>
         <td><%= issue.title %></td>
-        <td><%= issue.project.title %></td>
+        <td><%=link_to issue.project.title, project_path(issue.project) %></td>
 
         <td>
           <%= link_to t('helpers.links.show'), issue_path(issue) %>
@@ -37,4 +37,4 @@
   </tbody>
 </table>
 
-<%= link_to t('helpers.links.new'), new_issue_path, :class => 'btn btn-primary pull-right' %>
+<%= link_to t('helpers.links.new'), new_issue_path, :class => 'btn btn-default pull-right' %>
