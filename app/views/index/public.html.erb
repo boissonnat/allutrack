@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-8">
+    <h1>All-U-Track</h1>
+    <p class="lead">Manage your projects</p>
+  </div>
+
+  <div class="col-md-4">
+
+    <div class="row well">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name) ) do |f| %>
+
+          <legend>Sign in</legend>
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <%= f.email_field :email, :class => "form-control", :placeholder => "Email", :autofocus=>true  %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+              <div class="form-group">
+                <div class="checkbox">
+                    <label><%= f.check_box :remember_me %> <%= f.label :remember_me %></label>
+                </div>
+              </div>
+          <% end -%>
+
+          <%= f.submit "Sign in", :class => "btn btn-default pull-right" %>
+        <% end %>
+
+    </div>
+
+    <div class="row well">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-signin'}) do |f| %>
+          <legend>Not yet registered ?</legend>
+          <%= devise_error_messages! %>
+
+          <div class="form-group">
+            <%= f.email_field :email, :class => "form-control", :placeholder => "Email", :autofocus=>true  %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm password" %>
+          </div>
+
+            <%= f.submit "Sign up", :class => "btn btn-default pull-right" %>
+        <% end %>
+    </div>
+  </div>
+</div>
+
