@@ -8,6 +8,7 @@ class IssuesController < ApplicationController
   end
   def create
     @issue.user = current_user
+    @issue.status = STATUS[0]
     if @issue.save
       flash[:notice] = 'Successfully created issue.'
       redirect_to @issue
@@ -49,9 +50,26 @@ class IssuesController < ApplicationController
     @issues = current_user.issues
   end
 
+  def tagged
+    if params[:tag].present?
+      @issues = Issue.tagged_with(params[:tag])
+    else
+      @issues = Issue.all
+    end
+  end
+
+  def close
+
+    @issue.status = STATUS[1]
+    if @issue.save
+      flash[:notice] = 'Successfully closed issue.'
+      redirect_to @issue
+    end
+  end
+
   ## Helper methods
   def issue_params
-    params.require(:issue).permit(:title, :body, :project_id)
+    params.require(:issue).permit(:title, :body, :project_id, :milestone_id, :tag_list)
   end
 end
 

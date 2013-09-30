@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  dueTo: 2013-09-28
+  project_id: 
+  issue_id: 
+
+two:
+  title: MyString
+  dueTo: 2013-09-28
+  project_id: 
+  issue_id: 

@@ -8,7 +8,7 @@
   	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
   	<%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application"%>
     <%= csrf_meta_tags %>
   </head>
 
@@ -33,6 +33,11 @@
             <%= link_to(issues_path) do %>
                 Issues
                 <span class="badge"><%=current_user.issues.count%></span>
+            <%end%>
+          </li>
+          <li>
+            <%= link_to(milestones_path) do %>
+                Milestones
             <%end%>
           </li>
         </ul>

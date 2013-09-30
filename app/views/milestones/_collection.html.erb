@@ -1,0 +1,38 @@
+<%- model_class = Milestone -%>
+<div class="page-header">
+  <h1><%=model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <th><%= model_class.human_attribute_name(:title) %></th>
+    <th><%= model_class.human_attribute_name(:project) %></th>
+    <th><%=t('helpers.actions') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @milestones.each do |milestone| %>
+      <tr>
+        <td><%= milestone.id %></td>
+        <td><%=l milestone.created_at %></td>
+        <td><%= milestone.title %></td>
+        <td><%=link_to milestone.project.title, project_path(milestone.project) %></td>
+
+        <td>
+          <%= link_to t('helpers.links.show'), milestone_path(milestone) %>
+          |
+          <%= link_to t('helpers.links.edit'), edit_milestone_path(milestone) %>
+          |
+          <%= link_to t('helpers.links.destroy'),
+                      milestone_path(milestone),
+                      :method => :delete,
+                      :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') }%>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('helpers.links.new'), new_milestone_path, :class => 'btn btn-default pull-right' %>

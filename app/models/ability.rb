@@ -16,5 +16,7 @@ class Ability
     can :manage, Issue
 
     can :manage, Comment
+
+    can :manage, Milestone
   end
 end
