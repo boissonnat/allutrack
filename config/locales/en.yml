@@ -23,4 +23,21 @@ en:
       title: "Edit %{message}"
 
 
+  activerecord:
+    models:
+      project: "Project"
+      issue: "Issue"
+    attributes:
+      project:
+        title: "Title"
+        text: "Description"
+      issue:
+        title: "Title"
+        body: "Description"
+        milestone_id: "Milestone"
+        tag_list: "Labels"
+      milestone:
+        title: "Title"
+        dueTo: "Due to"
+
 
