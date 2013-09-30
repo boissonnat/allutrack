@@ -5,7 +5,9 @@ class IssuesController < ApplicationController
   # Create
   def new
     @projects = Project.all
-    @issue.project = Project.find(params[:project_id])
+    if params[:project_id]
+      @issue.project = Project.find(params[:project_id])
+    end
   end
   def create
     @issue.user = current_user

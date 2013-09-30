@@ -5,6 +5,9 @@ class MilestonesController < ApplicationController
   # Create
   def new
     @projects = Project.all
+    if params[:project_id]
+      @milestone.project = Project.find(params[:project_id])
+    end
   end
   def create
     if @milestone.save

@@ -74,11 +74,13 @@
         <%end%>
         <p class="text-center"><%=@issue.comments.count%> comments</p>
         <hr/>
-        <b>Labels :</b>
+        <b>Labels</b><br/>
         <%@issue.tag_list.each do |tag|%>
           <%= tag %>
         <% end %>
-
+        <br/>
+        <b>Milestone</b>
+        <%=@issue.milestone.title%>
 
     </div>
   </div>

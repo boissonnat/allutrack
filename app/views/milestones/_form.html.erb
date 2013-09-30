@@ -18,13 +18,16 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <%= f.label :project, :class => 'col-md-2 control-label' %>
-      <div class="col-md-6">
-        <%=collection_select(:milestone, :project_id, Project.all, :id, :title, {}, {:class=>'form-control'})%>
-      </div>
-    </div>
-
+    <% if @milestone.project %>
+        <%=f.hidden_field :project_id%>
+    <%else%>
+        <div class="form-group">
+          <%= f.label :project, :class => 'col-md-2 control-label' %>
+          <div class="col-md-6">
+            <%=collection_select(:milestone, :project_id, Project.all, :id, :title, {}, {:class=>'form-control'})%>
+          </div>
+        </div>
+    <%end%>
     <div class="form-group">
       <%= f.label :dueTo, :class => 'col-md-2 control-label' %>
       <div class="col-md-6">
