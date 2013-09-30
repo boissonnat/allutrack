@@ -5,6 +5,7 @@ class IssuesController < ApplicationController
   # Create
   def new
     @projects = Project.all
+    @issue.project = Project.find(params[:project_id])
   end
   def create
     @issue.user = current_user
@@ -59,8 +60,15 @@ class IssuesController < ApplicationController
   end
 
   def close
-
     @issue.status = STATUS[1]
+    if @issue.save
+      flash[:notice] = 'Successfully closed issue.'
+      redirect_to @issue
+    end
+  end
+
+  def reopen
+    @issue.status = STATUS[0]
     if @issue.save
       flash[:notice] = 'Successfully closed issue.'
       redirect_to @issue

@@ -55,6 +55,12 @@
 
         <div class="form-group pull-right">
           <%= f.submit nil, :class => 'btn btn-default' %>
+          <% if @issue.status == STATUS[0]%>
+              <%=link_to 'Close', close_issue_path(@issue), :class => 'btn btn-danger'%>
+          <%else%>
+              <%=link_to 'Reopen', reopen_issue_path(@issue), :class => 'btn btn-success'%>
+          <%end%>
+
         </div>
     <% end %>
   </div>
@@ -73,8 +79,7 @@
           <%= tag %>
         <% end %>
 
-        <b>Milestone :</b>
-        <%=@issue.milestone.title%>
+
     </div>
   </div>
 </div>

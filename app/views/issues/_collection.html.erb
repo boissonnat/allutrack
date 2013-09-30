@@ -10,7 +10,7 @@
     <th><%= model_class.human_attribute_name(:created_at) %></th>
     <th><%= model_class.human_attribute_name(:title) %></th>
     <th><%= model_class.human_attribute_name(:project) %></th>
-    <th><%=t('helpers.actions') %></th>
+    <th><%=t('helpers.actions.title') %></th>
   </tr>
   </thead>
   <tbody>
@@ -18,23 +18,23 @@
       <tr>
         <td><%= issue.id %></td>
         <td><%= issue.user.email %></td>
-        <td><%=l issue.created_at %></td>
+        <td><%=l issue.created_at, format: :usual_date %></td>
         <td><%= issue.title %></td>
         <td><%=link_to issue.project.title, project_path(issue.project) %></td>
 
         <td>
-          <%= link_to t('helpers.links.show'), issue_path(issue) %>
+          <%= link_to t('helpers.actions.show'), issue_path(issue) %>
           |
-          <%= link_to t('helpers.links.edit'), edit_issue_path(issue) %>
+          <%= link_to t('helpers.actions.edit'), edit_issue_path(issue) %>
           |
-          <%= link_to t('helpers.links.destroy'),
+          <%= link_to t('helpers.actions.delete'),
                       issue_path(issue),
                       :method => :delete,
-                      :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') }%>
+                      :data => { :confirm => t('helpers.actions.confirm') }%>
         </td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to t('helpers.links.new'), new_issue_path, :class => 'btn btn-default pull-right' %>
+<%= link_to t('helpers.actions.new_object', message:'Issue'), new_issue_path, :class => 'btn btn-default pull-right' %>

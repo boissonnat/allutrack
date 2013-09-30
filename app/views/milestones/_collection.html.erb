@@ -9,30 +9,30 @@
     <th><%= model_class.human_attribute_name(:created_at) %></th>
     <th><%= model_class.human_attribute_name(:title) %></th>
     <th><%= model_class.human_attribute_name(:project) %></th>
-    <th><%=t('helpers.actions') %></th>
+    <th><%=t('helpers.actions.title') %></th>
   </tr>
   </thead>
   <tbody>
   <% @milestones.each do |milestone| %>
       <tr>
         <td><%= milestone.id %></td>
-        <td><%=l milestone.created_at %></td>
+        <td><%=l milestone.created_at, format: :usual_date %></td>
         <td><%= milestone.title %></td>
         <td><%=link_to milestone.project.title, project_path(milestone.project) %></td>
 
         <td>
-          <%= link_to t('helpers.links.show'), milestone_path(milestone) %>
+          <%= link_to t('helpers.actions.show'), milestone_path(milestone) %>
           |
-          <%= link_to t('helpers.links.edit'), edit_milestone_path(milestone) %>
+          <%= link_to t('helpers.actions.edit'), edit_milestone_path(milestone) %>
           |
-          <%= link_to t('helpers.links.destroy'),
+          <%= link_to t('helpers.actions.delete'),
                       milestone_path(milestone),
                       :method => :delete,
-                      :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') }%>
+                      :data => { :confirm => t('helpers.actions.confirm') }%>
         </td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to t('helpers.links.new'), new_milestone_path, :class => 'btn btn-default pull-right' %>
+<%= link_to t('helpers.actions.new_object', message: 'Milestone'), new_milestone_path, :class => 'btn btn-default pull-right' %>

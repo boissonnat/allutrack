@@ -44,6 +44,15 @@ gem 'acts-as-taggable-on'
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
+group :development do
+  gem 'awesome_print'
+  gem 'quiet_assets'
+  gem 'sextant'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

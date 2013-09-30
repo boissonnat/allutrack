@@ -3,6 +3,8 @@ Allutrack::Application.routes.draw do
 
   resources :projects
   resources :issues do
+    get 'close', on: :member
+    get 'reopen', on: :member
     resources :comments
   end
   resources :milestones

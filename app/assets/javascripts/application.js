@@ -18,5 +18,5 @@
 //= require twitter/bootstrap
 
 $(function() {
-    $('.datePicker').datepicker();
+    $('.datePicker').datepicker({ dateFormat: "yy-mm-dd" });
 });
