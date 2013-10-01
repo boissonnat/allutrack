@@ -1,6 +1,7 @@
 Allutrack::Application.routes.draw do
   devise_for :users
 
+  resources :users
   resources :projects
   resources :issues do
     get 'close', on: :member

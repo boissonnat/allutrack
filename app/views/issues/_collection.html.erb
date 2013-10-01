@@ -1,36 +1,46 @@
 <%- model_class = Issue -%>
-<div class="page-header">
-  <h1><%=model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>#</th>
-    <th>Created by</th>
-    <th><%= model_class.human_attribute_name(:created_at) %></th>
-    <th><%= model_class.human_attribute_name(:title) %></th>
-    <th><%= model_class.human_attribute_name(:project) %></th>
-    <th><%=t('helpers.actions.title') %></th>
-  </tr>
-  </thead>
+<table class="table table-striped table-bordered">
   <tbody>
   <% @issues.each do |issue| %>
+      <%
+         String css_class = "success"
+         if issue.status == STATUS[1]
+           css_class = "danger"
+         end
+      %>
       <tr>
-        <td><%= issue.id %></td>
-        <td><%= issue.user.email %></td>
-        <td><%=l issue.created_at, format: :usual_date %></td>
-        <td><%= issue.title %></td>
-        <td><%=link_to issue.project.title, project_path(issue.project) %></td>
-
         <td>
-          <%= link_to t('helpers.actions.show'), issue_path(issue) %>
-          |
-          <%= link_to t('helpers.actions.edit'), edit_issue_path(issue) %>
-          |
-          <%= link_to t('helpers.actions.delete'),
-                      issue_path(issue),
-                      :method => :delete,
-                      :data => { :confirm => t('helpers.actions.confirm') }%>
+          <div class="row">
+            <div class="col-md-1">
+              <%if issue.status == STATUS[0]%>
+                  <span style="padding: 7px 0;" class="label label-success center-block">OPEN</span>
+              <%else%>
+                  <span style="padding: 7px 0;" class="label label-danger center-block">CLOSED</span>
+              <%end%>
+            </div>
+            <div class="col-md-11">
+              <div class="row">
+                <div class="col-md-12">
+                  <b><%=link_to issue.title, issue_path(issue) %></b>
+                  <% issue.tag_list.each do |label| %>
+                      <%=label%>
+                  <%end%>
+                  <div class="pull-right text-muted">
+                    #<%=issue.id%>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-muted"><small>
+                    Opened by <b><%=issue.user.email%></b>,
+                    the <%=l issue.created_at, format: :usual_date%>,
+                    <%=issue.comments.count%> comments
+                  </small></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
       </tr>
   <% end %>

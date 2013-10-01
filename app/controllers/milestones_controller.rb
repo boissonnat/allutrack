@@ -23,6 +23,8 @@ class MilestonesController < ApplicationController
   def show
     @milestone = Milestone.find(params[:id])
     @issues = @milestone.issues
+    @closed_issues = Issue.where(status: STATUS[1], milestone_id: @milestone.id)
+    @progress = (@closed_issues.count * 100) / @issues.count
   end
 
   # Edit

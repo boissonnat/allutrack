@@ -1,28 +1,37 @@
-<div class="page-header">
-  <h1>Your dashboard</h1>
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li class="active"><%=current_user.email%></li>
+    </ol>
+  </div>
 </div>
 
 <div class="row">
-  <div class="col-md-8">
-    <h3>Last activities</h3>
+  <div class="col-md-9">
+    <%= render 'issues/collection' %>
+    <%= link_to t('helpers.actions.new_object', message:'Issue'), new_issue_path(), :class => 'btn btn-default pull-right' %>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-3">
     <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Your projects
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Projects
               <span class="pull-right">
-                <%= link_to 'New project', new_project_path, :class => 'btn btn-xs btn-success' %>
+                <%= link_to new_project_path, :class => 'btn btn-link', :style => 'margin-top: -7px' do %>
+                    <i class="glyphicon glyphicon-plus"></i>
+                <%end%>
               </span>
-          </h3>
-        </div>
-        <div class="panel-body">
-          <ul class="list-unstyled">
+            </h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
               <% @projects.each do |project| %>
-                <li><%= link_to project.title, project_path(project) %></li>
+                  <li><%= link_to project.title, project_path(project) %></li>
               <%end%>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

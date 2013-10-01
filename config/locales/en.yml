@@ -3,6 +3,9 @@ en:
   time:
       formats:
         usual_date: "%e %b, %Y"
+  date:
+   formats:
+           usual_date: "%e %b, %Y"
 
   helpers:
     actions:
@@ -33,11 +36,15 @@ en:
         text: "Description"
       issue:
         title: "Title"
+        created_at: "Created at"
+        user_id: "Created by"
         body: "Description"
         milestone_id: "Milestone"
         tag_list: "Labels"
+        status: "Status"
       milestone:
         title: "Title"
+        created_at: "Created at"
         dueTo: "Due to"
 
 

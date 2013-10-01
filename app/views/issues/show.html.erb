@@ -1,32 +1,33 @@
 <%- model_class = Issue -%>
-<div class="page-header">
-  <div class="btn-group pull-right">
-    <button type="button" class="btn btn-default">Actions</button>
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-        <li><%= link_to t('helpers.links.back'), issues_path, :class => 'btn btn-link'  %></li>
-        <li><%= link_to t('helpers.links.edit'), edit_issue_path(@issue), :class => 'btn btn-link' %></li>
-        <li><%= link_to t('helpers.links.destroy'),
-                    issue_path(@issue),
-                    :method => 'delete',
-                    :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
-                    :class => 'btn btn-link' %></li>
-    </ul>
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><%=link_to @issue.project.title, project_path(@issue.project)%></li>
+      <li><%=link_to @issue.milestone.title, milestone_path(@issue.milestone)%></li>
+      <li class="active"><%=@issue.title%></li>
+    </ol>
   </div>
-
-  <h3>
-    <%=@issue.project.title%> - <%=model_class.model_name.human.titleize %> #<%=@issue.id%> - <%=@issue.milestone.title%>
-  </h3>
 </div>
+
 <div class="row">
   <div class="col-md-11">
-    <div class="panel panel-primary">
+    <div class="panel panel-success">
       <div class="panel-heading">
+        <div class="pull-right">
+          <%=link_to edit_issue_path(@issue) do %>
+              <i class="glyphicon glyphicon-edit"></i>
+          <%end%>
+          <%= link_to issue_path(@issue),
+                      :method => 'delete',
+                      :data => { :confirm => t('helpers.actions.confirm') },
+                      :class => 'btn btn-link' do %>
+              <i class="glyphicon glyphicon-trash"></i>
+          <%end %>
+        </div>
+
         <h3 class="panel-title">
           <%=@issue.title%><br/>
-          <small style="color: #ffffff"><%=@issue.user.email%> openened this issue the <%=@issue.created_at%></small>
+          <small><%=@issue.user.email%> openened this issue the <%=@issue.created_at%></small>
         </h3>
       </div>
       <div class="panel-body">
@@ -54,7 +55,7 @@
         </div>
 
         <div class="form-group pull-right">
-          <%= f.submit nil, :class => 'btn btn-default' %>
+          <%= f.submit 'Post', :class => 'btn btn-default' %>
           <% if @issue.status == STATUS[0]%>
               <%=link_to 'Close', close_issue_path(@issue), :class => 'btn btn-danger'%>
           <%else%>
@@ -67,21 +68,22 @@
 
   <div class="col-md-1">
     <div class="row">
+      <div class="col-md-12">
         <%if @issue.status == STATUS[0]%>
             <span style="padding: 7px 0;" class="label label-success center-block">OPEN</span>
         <%else%>
             <span style="padding: 7px 0;" class="label label-danger center-block">CLOSED</span>
         <%end%>
-        <p class="text-center"><%=@issue.comments.count%> comments</p>
+        <p class="text-center"><small><b><%=@issue.comments.count%></b> comments</small></p>
         <hr/>
         <b>Labels</b><br/>
         <%@issue.tag_list.each do |tag|%>
-          <%= tag %>
+            <%= tag %>
         <% end %>
         <br/>
         <b>Milestone</b>
         <%=@issue.milestone.title%>
-
+      </div>
     </div>
   </div>
 </div>
