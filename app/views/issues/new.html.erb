@@ -1,9 +1,13 @@
 <%- model_class = Issue -%>
 <div class="page-header">
-  <% if @issue.project %>
-    <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %> for project <%=@issue.project.title%></h1>
-  <%else%>
-    <h1>New issue</h1>
-  <%end%>
+  <h3>
+    <%=t '.title'%>
+    <% if @issue.project %>
+        for <%=link_to @issue.project.title, project_path(@issue.project)%>
+    <%end%>
+    <% if @issue.milestone %>
+        - <%=link_to @issue.milestone.title, milestone_path(@issue.milestone)%>
+    <%end%>
+  </h3>
 </div>
 <%= render :partial => 'form' %>
