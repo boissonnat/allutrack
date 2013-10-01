@@ -10,9 +10,17 @@ class ApplicationController < ActionController::Base
   end
 
   before_filter do
+    # Check Strong parameters for each Controller
     resource = controller_path.singularize.gsub('/', '_').to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
+
+    # Check strong parameter for Devise as we don't have the controller
+    if devise_controller?
+      devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :password) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
+    end
   end
 
 end
