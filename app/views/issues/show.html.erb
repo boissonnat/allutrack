@@ -1,4 +1,5 @@
 <%- model_class = Issue -%>
+<% content_for :title, "Issue" + @issue.title %>
 <div class="row">
   <div class="col-md-12">
     <ol class="breadcrumb">
@@ -82,7 +83,7 @@
         <% end %>
         <br/>
         <b>Milestone</b>
-        <%=@issue.milestone.title%>
+        <%=link_to @issue.milestone.title, milestone_path(@issue.milestone)%>
       </div>
     </div>
   </div>

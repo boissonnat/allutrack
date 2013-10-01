@@ -1,9 +1,10 @@
 <%- model_class = Milestone -%>
+<% content_for :title, " New Milestone" %>
 <div class="page-header">
   <% if @milestone.project%>
-    <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %> for project <%=@milestone.project.title%></h1>
+    <h1><%=t '.title' %> for project <%=@milestone.project.title%></h1>
   <%else%>
-    <h1>New Milestone</h1>
+    <h1><%=t '.title' %></h1>
   <%end%>
 </div>
 <%= render :partial => 'form' %>

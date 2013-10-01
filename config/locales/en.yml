@@ -24,11 +24,18 @@ en:
   projects:
     edit:
       title: "Edit %{message}"
+    new:
+      title: "New project"
   issues:
     new:
       title: "New issue"
     edit:
       title: "Edit issue"
+  milestones:
+    new:
+      title: "New milestone"
+    edit:
+      title: "Edit milestone"
 
 
   activerecord:
