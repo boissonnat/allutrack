@@ -28,7 +28,7 @@
 
         <h3 class="panel-title">
           <%=@issue.title%><br/>
-          <small><%=@issue.user.email%> openened this issue the <%=@issue.created_at%></small>
+          <small>Opened by <b><%=@issue.user.username%></b>, the <%=l @issue.created_at, format: :usual_date%></small>
         </h3>
       </div>
       <div class="panel-body">
@@ -41,7 +41,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              <small><%=comment.user.email%> commented this issue the <%=@issue.created_at%></small>
+              <small>Commented by <b><%=comment.user.username%></b>, the <%=l @issue.created_at, format: :usual_date%></small>
             </h3>
           </div>
           <div class="panel-body">

@@ -19,7 +19,7 @@
         <td><%= project.id %></td>
         <td><%= project.title %></td>
         <td><%= project.text %></td>
-        <td><%= project.user.email %></td>
+        <td><%= project.user.username%></td>
         <td><%=l project.created_at, format: :usual_date %></td>
         <td>
           <%= link_to t('helpers.actions.show'), project_path(project) %>
