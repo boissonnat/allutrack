@@ -53,7 +53,7 @@ class IssuesController < ApplicationController
 
   # List
   def index
-    @issues = current_user.issues
+    @issues = Issue.where(project_id: current_user.projects )
   end
 
   def tagged
