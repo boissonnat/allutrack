@@ -15,15 +15,20 @@
     <div class="panel panel-success">
       <div class="panel-heading">
         <div class="pull-right">
-          <%=link_to edit_issue_path(@issue) do %>
-              <i class="glyphicon glyphicon-edit"></i>
+          <% if can? :update, @issue %>
+              <%=link_to edit_issue_path(@issue) do %>
+                  <i class="glyphicon glyphicon-edit"></i>
+              <%end%>
           <%end%>
-          <%= link_to issue_path(@issue),
-                      :method => 'delete',
-                      :data => { :confirm => t('helpers.actions.confirm') },
-                      :class => 'btn btn-link' do %>
-              <i class="glyphicon glyphicon-trash"></i>
-          <%end %>
+
+          <% if can? :destroy, @issue %>
+              <%= link_to issue_path(@issue),
+                          :method => 'delete',
+                          :data => { :confirm => t('helpers.actions.confirm') },
+                          :class => 'btn btn-link' do %>
+                  <i class="glyphicon glyphicon-trash"></i>
+              <%end %>
+          <%end%>
         </div>
 
         <h3 class="panel-title">

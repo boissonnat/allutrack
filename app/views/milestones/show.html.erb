@@ -15,15 +15,19 @@
     <div class="panel panel-success">
       <div class="panel-heading">
         <div class="pull-right">
-          <%=link_to edit_milestone_path(@milestone) do %>
-              <i class="glyphicon glyphicon-edit"></i>
+          <% if can? :update, @milestone %>
+              <%=link_to edit_milestone_path(@milestone) do %>
+                  <i class="glyphicon glyphicon-edit"></i>
+              <%end%>
           <%end%>
-          <%= link_to milestone_path(@milestone),
-                      :method => 'delete',
-                      :data => { :confirm => t('helpers.actions.confirm') },
-                      :class => 'btn btn-link' do %>
-              <i class="glyphicon glyphicon-trash"></i>
-          <%end %>
+          <% if can? :destroy, @milestone %>
+              <%= link_to milestone_path(@milestone),
+                          :method => 'delete',
+                          :data => { :confirm => t('helpers.actions.confirm') },
+                          :class => 'btn btn-link' do %>
+                  <i class="glyphicon glyphicon-trash"></i>
+              <%end %>
+          <%end%>
         </div>
         <h3 class="panel-title">
           <%=@milestone.title%><br/>
@@ -42,5 +46,8 @@
 </div>
 
 <%= render 'issues/collection' %>
-<%= link_to t('helpers.actions.new_object', message:'Issue'), new_issue_path(:project_id => @milestone.project.id, :milestone_id => @milestone.id), :class => 'btn btn-default pull-right' %>
+<%= link_to t('helpers.actions.new_object', message:'Issue'),
+            new_issue_path(:project_id => @milestone.project.id, :milestone_id => @milestone.id),
+            :class => 'btn btn-default pull-right'
+%>
 

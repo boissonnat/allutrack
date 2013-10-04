@@ -24,7 +24,7 @@
         <div class="form-group">
           <%= f.label :project, :class => 'col-md-2 control-label' %>
           <div class="col-md-10">
-            <%=collection_select(:issue, :project_id, Project.all, :id, :title, {}, {:class=>'form-control'})%>
+            <%=collection_select(:issue, :project_id, current_user.projects, :id, :title, {}, {:class=>'form-control'})%>
           </div>
         </div>
     <% end %>
