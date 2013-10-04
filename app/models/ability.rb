@@ -29,7 +29,8 @@ class Ability
 
     ## Rights for Comment
     can :create, Comment do |comment|
-      comment.project.users.include?(user)
+      #comment.project.users.include?(user)
+      true
     end
 
     can :read, Comment
@@ -48,7 +49,11 @@ class Ability
 
     ## Rights for Milestones
     can :manage, Milestone do |milestone|
-      milestone.project.users.include?(user)
+      if milestone.project
+        milestone.project.users.include?(user)
+      else
+        true
+      end
     end
   end
 end

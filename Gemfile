@@ -41,6 +41,9 @@ gem "cancan"
 # tags
 gem 'acts-as-taggable-on'
 
+# Markdown
+gem 'redcarpet'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 

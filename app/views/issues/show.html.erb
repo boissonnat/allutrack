@@ -37,7 +37,7 @@
         </h3>
       </div>
       <div class="panel-body">
-        <%=@issue.body%>
+        <%= markdown(@issue.body) %>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
             </h3>
           </div>
           <div class="panel-body">
-            <%=comment.body%>
+            <%= markdown(comment.body) %>
           </div>
         </div>
     <%end%>
