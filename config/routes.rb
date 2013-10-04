@@ -2,7 +2,10 @@ Allutrack::Application.routes.draw do
   devise_for :users
 
   resources :users
-  resources :projects
+  resources :projects do
+    get 'add_contributor', on: :member
+    post 'add_contributor', on: :member
+  end
   resources :issues do
     get 'close', on: :member
     get 'reopen', on: :member
@@ -11,6 +14,7 @@ Allutrack::Application.routes.draw do
   resources :milestones
 
   match 'tagged' => 'issues#tagged', :as => 'tagged', via: [:get, :post]
+
   root 'index#index'
 
 end

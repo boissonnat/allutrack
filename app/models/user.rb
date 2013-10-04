@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
 
-  has_many :projects
+  has_many :memberships, :dependent => :delete_all
+  has_many :projects, :through => :memberships
   has_many :issues
 
   def self.find_first_by_auth_conditions(warden_conditions)

@@ -6,8 +6,10 @@ class ProjectsController < ApplicationController
   def new
   end
   def create
-    @project.user = current_user
+    # Create the membership
+
     if @project.save
+      @project.memberships.create(:user_id => current_user.id, :role => 1)
       flash[:notice] = 'Successfully created project.'
       redirect_to @project
     else
@@ -48,8 +50,21 @@ class ProjectsController < ApplicationController
     @projects = current_user.projects
   end
 
+  # Add contributors
+  def add_contributor
+    if params[:user_id]
+      @project.memberships.create(:user_id => params[:user_id], :role => 2)
+      if @project.save
+        flash[:notice] = 'Successfully added contributor.'
+        redirect_to @project
+      end
+    else
+      render 'add_contributor'
+    end
+  end
+
   ## Helper methods
   def project_params
-    params.require(:project).permit(:title, :text)
+    params.require(:project).permit(:title, :text, :user_id)
   end
 end
