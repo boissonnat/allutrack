@@ -11,21 +11,24 @@
 <% end %>
 
 <%= form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="form-group">
-    <%= f.label :title, :class => 'col-md-2 control-label' %>
-    <div class="col-md-10">
-      <%= f.text_field :title, :class => 'form-control' %>
+    <div class="form-group">
+      <%= f.label :title, :class => 'col-md-2 control-label' %>
+      <div class="col-md-10">
+        <%= f.text_field :title, :class => 'form-control' %>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :text, :class => 'col-md-2 control-label' %>
-    <div class="col-md-10">
-      <div id="epiceditor">
+    <div class="form-group">
+      <%= f.label :text, :class => 'col-md-2 control-label' %>
+      <div class="col-md-10">
+        <p class="text-right">
+          I'm a
+          <a data-toggle="modal" href="#markdownHelper" class="">
+            markdown editor
+          </a>
+        </p>
         <%= f.text_area :text, :class => 'form-control'%>
       </div>
     </div>
-  </div>
-
 
     <div class="form-group">
       <div class="col-md-offset-2 col-md-10">
@@ -35,9 +38,53 @@
     </div>
 <% end %>
 
-<script type="text/javascript">
-    var opts = {
-        textarea: 'markdown'
-    };
-    var editor = new EpicEditor(opts);
-</script>
+<!-- Modal :markdown helper -->
+<div class="modal fade" id="markdownHelper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Markdown Cheatsheet</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Format text</h5>
+            <small>Headers</small>
+            <div class="well small">
+              <ul class="list-unstyled">
+                <li># This is a &lt;h1&gt;</li>
+                <li>## This is a &lt;h2&gt;</li>
+                <li>###### This is a &lt;h6&gt;</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h5>List</h5>
+            <small>Unordered</small>
+            <div class="well small">
+              <ul class="list-unstyled">
+                <li>* item 1</li>
+                <li>* item 2</li>
+                <li>&nbsp;&nbsp;&nbsp;* item 2a</li>
+                <li>&nbsp;&nbsp;&nbsp;* item 2b</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h5>Miscellaneous</h5>
+            <small>Links</small>
+            <div class="well small">
+              <ul class="list-unstyled">
+                <li>[Google](http://www.google.com)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
