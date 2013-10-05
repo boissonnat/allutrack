@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   has_many :users, :through => :memberships
   has_many :issues
   has_many :milestones
+  has_many :labels
 
   public
     def author

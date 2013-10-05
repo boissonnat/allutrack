@@ -55,5 +55,8 @@ class Ability
         true
       end
     end
+
+    ## Rights for labels
+    can :manage, Label
   end
 end

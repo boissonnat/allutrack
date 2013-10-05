@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131004090051) do
+ActiveRecord::Schema.define(version: 20131005093426) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 20131004090051) do
   add_index "issues", ["milestone_id"], name: "index_issues_on_milestone_id"
   add_index "issues", ["project_id"], name: "index_issues_on_project_id"
   add_index "issues", ["user_id"], name: "index_issues_on_user_id"
+
+  create_table "labels", force: true do |t|
+    t.string   "color"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+  end
+
+  add_index "labels", ["project_id"], name: "index_labels_on_project_id"
 
   create_table "memberships", force: true do |t|
     t.datetime "created_at"

@@ -1,0 +1,35 @@
+<% if @label.errors.any? %>
+    <div class="alert alert-danger">
+      <b><%= pluralize(@label.errors.count, "error") %> prohibited
+        this issue from being saved:</b>
+      <ul>
+        <% @label.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<%= form_for @label, :html => { :class => 'form-horizontal' } do |f| %>
+    <%=f.hidden_field :project_id%>
+    <div class="form-group">
+      <%= f.label :title, :class => 'col-md-2 control-label' %>
+      <div class="col-md-10">
+        <%= f.text_field :title, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :color, :class => 'col-md-2 control-label' %>
+      <div class="col-md-10">
+        <%= f.text_field :color, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <%= link_to t("helpers.actions.cancel"), issues_path, :class => 'btn btn-default' %>
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+      </div>
+    </div>
+<% end %>

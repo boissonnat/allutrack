@@ -36,6 +36,9 @@ en:
       title: "New milestone"
     edit:
       title: "Edit milestone"
+  labels:
+    new:
+      title: "New Label"
 
 
   activerecord:
