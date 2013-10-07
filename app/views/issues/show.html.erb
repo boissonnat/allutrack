@@ -11,7 +11,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-11">
+  <div class="col-md-10">
     <div class="panel panel-success">
       <div class="panel-heading">
         <div class="pull-right">
@@ -78,7 +78,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-1">
+  <div class="col-md-2">
     <div class="row">
       <div class="col-md-12">
         <%if @issue.status == STATUS[0]%>
@@ -86,7 +86,7 @@
         <%else%>
             <span style="padding: 7px 0;" class="label label-danger center-block">CLOSED</span>
         <%end%>
-        <p class="text-center"><small><b><%=@issue.comments.count%></b> comments</small></p>
+        <p><small><b><%=@issue.comments.count%></b> comments</small></p>
         <hr/>
         <b>Labels</b><br/>
         <ul class="list-unstyled">
@@ -94,7 +94,7 @@
                 <li><span class="label" style="background-color: <%=label.color%>"><%=label.title%></span></li>
             <% end %>
         </ul>
-        <b>Milestone</b>
+        <b>Milestone</b><br/>
         <%=link_to @issue.milestone.title, milestone_path(@issue.milestone)%>
       </div>
     </div>
