@@ -2,10 +2,25 @@
 <% content_for :title, "Issue" + @issue.title %>
 <div class="row">
   <div class="col-md-12">
+    <small>
+      <%=link_to milestone_path(@issue.milestone) do %>
+          <i class="glyphicon glyphicon-arrow-left"></i>
+          Back to issues list
+      <%end%>
+      <div class="pull-right"><%=link_to t('issues.new.title'), new_issue_path(project_id: @issue.project.id, milestone_id: @issue.milestone.id), :class => 'btn btn-success btn-xs'%></div>
+    </small>
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+  <div class="col-md-12">
     <ol class="breadcrumb">
       <li><%=link_to @issue.project.title, project_path(@issue.project)%></li>
       <li><%=link_to @issue.milestone.title, milestone_path(@issue.milestone)%></li>
       <li class="active"><%=@issue.title%></li>
+
     </ol>
   </div>
 </div>
@@ -90,9 +105,9 @@
         <hr/>
         <b>Labels</b><br/>
         <ul class="list-unstyled">
-            <%@issue.labels.each do |label|%>
-                <li><span class="label" style="background-color: <%=label.color%>"><%=label.title%></span></li>
-            <% end %>
+          <%@issue.labels.each do |label|%>
+              <li><span class="label" style="background-color: <%=label.color%>"><%=label.title%></span></li>
+          <% end %>
         </ul>
         <b>Milestone</b><br/>
         <%=link_to @issue.milestone.title, milestone_path(@issue.milestone)%>
