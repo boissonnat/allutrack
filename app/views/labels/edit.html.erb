@@ -1,0 +1,11 @@
+<%- model_class = Label -%>
+<% content_for :title, "Edit Label"%>
+<div class="page-header">
+  <h3>
+    <%=t '.title'%>
+    <% if @label.project %>
+        for <%=link_to @label.project.title, project_path(@label.project)%>
+    <%end%>
+  </h3>
+</div>
+<%= render :partial => 'form' %>

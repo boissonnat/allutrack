@@ -39,6 +39,8 @@ en:
   labels:
     new:
       title: "New Label"
+    edit:
+      title: "Edit label"
 
 
   activerecord:
