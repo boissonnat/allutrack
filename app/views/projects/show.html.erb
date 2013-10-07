@@ -106,7 +106,16 @@
             Contributors
           </li>
           <%@project.contributors.each do |contributor|%>
-              <li class="list-group-item"><b><%=contributor.username%></b> (<%=contributor.email%>)</li>
+              <li class="list-group-item">
+                <b><%=contributor.username%></b> (<%=contributor.email%>)
+                <% if can? :remove_contributor, @project %>
+                    <span class="small pull-right">
+                      <%=link_to remove_contributor_project_path(@project, :user_id => contributor.id) do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                      <%end%>
+                    </span>
+                <%end%>
+              </li>
           <% end %>
         </ul>
       </div>

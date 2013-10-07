@@ -6,6 +6,8 @@ Allutrack::Application.routes.draw do
   resources :projects do
     get 'add_contributor', on: :member
     post 'add_contributor', on: :member
+    get 'remove_contributor', on: :member
+    post 'remove_contributor', on: :member
   end
   resources :issues do
     get 'close', on: :member

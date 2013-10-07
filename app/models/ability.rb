@@ -17,6 +17,9 @@ class Ability
     can :add_contributor, Project do |project|
       project.memberships.find_by_role(1).user == user
     end
+    can :remove_contributor, Project do |project|
+      project.memberships.find_by_role(1).user == user
+    end
 
     ## Rights for Issues
     can :manage, Issue do |issue|
@@ -58,5 +61,6 @@ class Ability
 
     ## Rights for labels
     can :manage, Label
+
   end
 end

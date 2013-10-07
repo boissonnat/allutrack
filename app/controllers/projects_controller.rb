@@ -62,12 +62,19 @@ class ProjectsController < ApplicationController
   # Add contributors
   def add_contributor
     if params[:emails]
-      collaborator = User.where(email: params[:emails])
-      if collaborator.nil?
-        @project.memberships.create(collaborator.id, :role => 2)
-      else
-      # No user found, send him an invitation
-        User.invite!(:email => params[:emails], invitation_for_project: @project.id)
+      # Split emails by ';'
+      emails_as_array = params[:emails].split(";")
+      for email in emails_as_array
+        contributor = User.find_by_email!(email)
+        if contributor
+          #if Membership.where(project_id:@project.id, user_id:contributor.id)
+          #else
+            @project.memberships.create(user_id: contributor.id, role: 2)
+          #end
+        else
+          # No user found, send him an invitation
+          User.invite!(:email => email, invitation_for_project: @project.id)
+        end
       end
 
       if @project.save
@@ -77,6 +84,16 @@ class ProjectsController < ApplicationController
     else
       render 'add_contributor'
     end
+  end
+
+  def remove_contributor
+    if params[:user_id]
+      memberships = Membership.where(project_id: @project.id, user_id: params[:user_id])
+      for membership in memberships
+        membership.destroy
+      end
+    end
+    redirect_to @project
   end
 
   ## Helper methods
