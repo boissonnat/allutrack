@@ -106,7 +106,7 @@
             Contributors
           </li>
           <%@project.contributors.each do |contributor|%>
-              <li class="list-group-item">
+              <li class="list-group-item small">
                 <b><%=contributor.username%></b> (<%=contributor.email%>)
                 <% if can? :remove_contributor, @project %>
                     <span class="small pull-right">
@@ -117,6 +117,11 @@
                 <%end%>
               </li>
           <% end %>
+          <% User.invitation_not_accepted.where(invitation_for_project:@project.id).each do |contributor|%>
+              <li class="list-group-item small">
+                waiting for <%=contributor.email%>
+              </li>
+          <%end%>
         </ul>
       </div>
     </div>

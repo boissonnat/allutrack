@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
       # Split emails by ';'
       emails_as_array = params[:emails].split(";")
       for email in emails_as_array
-        contributor = User.find_by_email!(email)
+        contributor = User.find_by_email(email)
         if contributor
           #if Membership.where(project_id:@project.id, user_id:contributor.id)
           #else
