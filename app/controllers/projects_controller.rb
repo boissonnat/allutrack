@@ -6,9 +6,18 @@ class ProjectsController < ApplicationController
   def new
   end
   def create
-    # Create the membership
+    # Add some default labels to every new project
+    story = Label.new(title: 'story', color: '#428bca')
+    ready_for_review = Label.new(title: 'ready for review', color: '#5cb85c')
+    bug = Label.new(title: 'bug', color: '#d9534f')
+    feature = Label.new(title: 'feature', color: '#5bc0de')
+    question = Label.new(title: 'question', color: '#f0ad4e')
+    ui = Label.new(title: 'ui', color: '#cc317c')
+
+    @project.labels << [story, ready_for_review, bug, feature, ui, question]
 
     if @project.save
+      # Create the membership
       @project.memberships.create(:user_id => current_user.id, :role => 1)
       flash[:notice] = 'Successfully created project.'
       redirect_to @project
