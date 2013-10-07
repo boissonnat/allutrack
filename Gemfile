@@ -38,6 +38,8 @@ gem 'devise', '~> 3.0.1'
 
 gem "cancan"
 
+gem 'devise_invitable'
+
 # Markdown
 gem 'redcarpet'
 

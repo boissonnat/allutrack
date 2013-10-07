@@ -7,10 +7,10 @@
     <div class="form-group">
       <%= f.label :contributor, :class => 'col-md-2 control-label' %>
       <div class="col-md-10">
-        <select name="user_id" id="user_id" class="form-control">
-          <%= options_from_collection_for_select(User.all, :id, :username) %>
-        </select>
-
+        <!--<select name="user_id" id="user_id" class="form-control">-->
+          <!--<%= options_from_collection_for_select(User.all, :id, :username) %>-->
+        <!--</select>-->
+        <textarea class="form-control" name="emails"></textarea>
       </div>
     </div>
 

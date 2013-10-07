@@ -61,8 +61,15 @@ class ProjectsController < ApplicationController
 
   # Add contributors
   def add_contributor
-    if params[:user_id]
-      @project.memberships.create(:user_id => params[:user_id], :role => 2)
+    if params[:emails]
+      collaborator = User.where(email: params[:emails])
+      if collaborator.nil?
+        @project.memberships.create(collaborator.id, :role => 2)
+      else
+      # No user found, send him an invitation
+        User.invite!(:email => params[:emails])
+      end
+
       if @project.save
         flash[:notice] = 'Successfully added contributor.'
         redirect_to @project
@@ -74,6 +81,6 @@ class ProjectsController < ApplicationController
 
   ## Helper methods
   def project_params
-    params.require(:project).permit(:title, :text, :user_id)
+    params.require(:project).permit(:title, :text, :emails)
   end
 end
