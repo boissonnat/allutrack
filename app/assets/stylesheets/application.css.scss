@@ -1,19 +1,46 @@
-// Import libs
+/*
+  Import libs
+-----------------------------------------------------------*/
 @import "jquery.ui.all";
 @import "twitter/bootstrap";
 
-// Import specific files corresponding to controllers
+/*
+  Import specific files corresponding to controllers
+-----------------------------------------------------------*/
 @import "index.css.scss";
 
+/*
+  Push the body under the static navBar
+-----------------------------------------------------------*/
 body {
   padding-top: 60px;
   padding-bottom: 40px;
 }
 
-/*  list-group-item-heading is used to display
-    tabular info in project and dashboard
--------------------------------------------------- */
+/*
+  remove the paddings on the navBar in order to align
+  element with the rest of the page
+-----------------------------------------------------------*/
+.navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/*
+  Breadcrumb : remove rounded border, harmonize colors with
+  the rest of the app
+-----------------------------------------------------------*/
+.breadcrumb {
+  background-color: $table-bg-accent;
+  border: 1px solid $table-border-color;
+  border-radius: 0;
+}
+
+/*
+  list-group-item-heading is used to display
+  tabular info in project and dashboard
+-----------------------------------------------------------*/
 .list-group-item-heading {
-  background-color: #f5f5f5;
+  background-color: $table-bg-accent;
   margin-bottom: 0px;
 }
