@@ -89,10 +89,11 @@
         <p class="text-center"><small><b><%=@issue.comments.count%></b> comments</small></p>
         <hr/>
         <b>Labels</b><br/>
-        <%@issue.tag_list.each do |tag|%>
-            <%= tag %>
-        <% end %>
-        <br/>
+        <ul class="list-unstyled">
+            <%@issue.labels.each do |label|%>
+                <li><span class="label" style="background-color: <%=label.color%>"><%=label.title%></span></li>
+            <% end %>
+        </ul>
         <b>Milestone</b>
         <%=link_to @issue.milestone.title, milestone_path(@issue.milestone)%>
       </div>

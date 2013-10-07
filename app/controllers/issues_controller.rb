@@ -56,14 +56,6 @@ class IssuesController < ApplicationController
     @issues = Issue.where(project_id: current_user.projects )
   end
 
-  def tagged
-    if params[:tag].present?
-      @issues = Issue.tagged_with(params[:tag])
-    else
-      @issues = Issue.all
-    end
-  end
-
   def close
     @issue.status = STATUS[1]
     if @issue.save
@@ -82,7 +74,7 @@ class IssuesController < ApplicationController
 
   ## Helper methods
   def issue_params
-    params.require(:issue).permit(:title, :body, :project_id, :milestone_id, :tag_list)
+    params.require(:issue).permit(:title, :body, :project_id, :milestone_id, :label_ids => [])
   end
 end
 

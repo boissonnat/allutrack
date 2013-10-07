@@ -40,15 +40,18 @@
         </div>
     <%end%>
 
-
-
-
     <div class="form-group">
-      <%= f.label :tag_list, :class => 'col-md-2 control-label' %>
+      <%= f.label :labels, :class => 'col-md-2 control-label' %>
       <div class="col-md-10">
-        <%= f.text_field :tag_list, :class => 'form-control' %>
+        <%= f.collection_check_boxes :label_ids, @issue.project.labels, :id, :title, :class => 'form-control' do |b|%>
+            <div class="checkbox">
+              <label>
+                <%=b.check_box%>
+                <%=b.text%>
+              </label>
+            </div>
+        <%end%>
       </div>
-
     </div>
 
     <div class="form-group">

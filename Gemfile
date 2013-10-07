@@ -38,9 +38,6 @@ gem 'devise', '~> 3.0.1'
 
 gem "cancan"
 
-# tags
-gem 'acts-as-taggable-on'
-
 # Markdown
 gem 'redcarpet'
 

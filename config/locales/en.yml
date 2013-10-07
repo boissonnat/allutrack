@@ -55,7 +55,6 @@ en:
         user_id: "Created by"
         body: "Description"
         milestone_id: "Milestone"
-        tag_list: "Labels"
         status: "Status"
       milestone:
         title: "Title"

@@ -14,8 +14,6 @@ Allutrack::Application.routes.draw do
   resources :milestones
   resources :labels
 
-  match 'tagged' => 'issues#tagged', :as => 'tagged', via: [:get, :post]
-
   root 'index#index'
 
 end

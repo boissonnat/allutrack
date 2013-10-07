@@ -22,8 +22,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <b><%=link_to issue.title, issue_path(issue) %></b>
-                  <% issue.tag_list.each do |label| %>
-                      <%=label%>
+                  <% issue.labels.each do |label| %>
+                      <span class="label" style="background-color: <%=label.color%>"><%=label.title%></span>
                   <%end%>
                   <div class="pull-right text-muted">
                     #<%=issue.id%>
