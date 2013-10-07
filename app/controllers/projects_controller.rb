@@ -62,23 +62,26 @@ class ProjectsController < ApplicationController
   # Add contributors
   def add_contributor
     if params[:emails]
+      number_of_contributors = 0
+      number_of_invitations = 0
       # Split emails by ';'
       emails_as_array = params[:emails].split(";")
-      for email in emails_as_array
+      emails_as_array.each { |email|
         contributor = User.find_by_email(email)
         if contributor
-          #if Membership.where(project_id:@project.id, user_id:contributor.id)
-          #else
-            @project.memberships.create(user_id: contributor.id, role: 2)
-          #end
+          @project.memberships.create(user_id: contributor.id, role: 2)
+          number_of_contributors = number_of_contributors + 1
         else
           # No user found, send him an invitation
           User.invite!(:email => email, invitation_for_project: @project.id)
+          number_of_invitations = number_of_invitations + 1
         end
-      end
+      }
 
       if @project.save
-        flash[:notice] = 'Successfully added contributor.'
+        flash[:notice] =
+            number_of_contributors.to_s + ' contributor(s) added to the project. ' +
+            number_of_invitations.to_s + ' invitation(s) sent.'
         redirect_to @project
       end
     else
