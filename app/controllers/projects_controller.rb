@@ -67,7 +67,7 @@ class ProjectsController < ApplicationController
         @project.memberships.create(collaborator.id, :role => 2)
       else
       # No user found, send him an invitation
-        User.invite!(:email => params[:emails])
+        User.invite!(:email => params[:emails], invitation_for_project: @project.id)
       end
 
       if @project.save

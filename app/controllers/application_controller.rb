@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :password) }
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
-      devise_parameter_sanitizer.for(:invite) { |u| u.permit(:username, :email) }
-      devise_parameter_sanitizer.for(:accept_invitation) { |u| u.permit(:username, :email, :password, :confirmation_password, :invitation_token) }
+      devise_parameter_sanitizer.for(:invite) { |u| u.permit(:username, :email, :invitation_for_project) }
+      devise_parameter_sanitizer.for(:accept_invitation) { |u| u.permit(:username, :email, :password, :confirmation_password, :invitation_token, :invitation_for_project) }
     end
   end
 

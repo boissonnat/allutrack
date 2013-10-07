@@ -9,6 +9,15 @@ class User < ActiveRecord::Base
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
 
+  after_invitation_accepted :email_invited_by
+
+  def email_invited_by
+    project = Project.find(self.invitation_for_project)
+    if project
+      project.memberships.create(user_id: id, role: 2)
+    end
+  end
+
   has_many :memberships, :dependent => :delete_all
   has_many :projects, :through => :memberships
   has_many :issues
@@ -20,9 +29,5 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
-  end
-
-  def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :remember_me, :login)
   end
 end
