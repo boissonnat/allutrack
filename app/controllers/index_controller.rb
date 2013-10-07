@@ -3,7 +3,12 @@ class IndexController < ApplicationController
     if current_user
       @projects = current_user.projects
       @issues = Issue.where(project_id: current_user.projects )
-      render "private"
+
+      if @projects.count > 0
+        render "private"
+      else
+        render "private_no_project"
+      end
     else
       render "public"
     end
