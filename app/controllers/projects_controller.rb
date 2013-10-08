@@ -31,8 +31,25 @@ class ProjectsController < ApplicationController
   # Read
   def show
     @project = Project.find(params[:id])
-    @issues = @project.issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     @milestones = @project.milestones
+
+    @all_issues = @project.issues
+    @all_opened_issues = @all_issues.where(status: STATUS[0])
+    @all_closed_issues = @all_issues.where(status: STATUS[1])
+
+    if params[:status]
+      if params[:status] == 'open'
+        @issues = @all_opened_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+      else
+        if params[:status] == 'close'
+          @issues = @all_closed_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        else
+          @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        end
+      end
+    else
+      @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    end
   end
 
   # Edit

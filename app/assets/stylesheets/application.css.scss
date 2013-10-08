@@ -44,3 +44,14 @@ body {
   background-color: $table-bg-accent;
   margin-bottom: 0px;
 }
+
+/*
+  Styling the panel active links (used mainly in issues
+  collection
+-----------------------------------------------------------*/
+.panel .list-inline li.active a {
+  background-color: #428bca;
+  color: #FFFFFF;
+  border-radius: 3px;
+  padding: 2px 5px;
+}

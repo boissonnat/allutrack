@@ -22,12 +22,29 @@ class MilestonesController < ApplicationController
   # Read
   def show
     @milestone = Milestone.find(params[:id])
-    @issues = @milestone.issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
-    @closed_issues = Issue.where(status: STATUS[1], milestone_id: @milestone.id)
+
+    @all_issues = @milestone.issues
+    @all_opened_issues = @all_issues.where(status: STATUS[0])
+    @all_closed_issues = @all_issues.where(status: STATUS[1])
+
     if @milestone.issues.count > 0
-      @progress = (@closed_issues.count * 100) / @milestone.issues.count
+      @progress = (@all_closed_issues.count * 100) / @milestone.issues.count
     else
       @progress = 0
+    end
+
+    if params[:status]
+      if params[:status] == 'open'
+        @issues = @all_opened_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+      else
+        if params[:status] == 'close'
+          @issues = @all_closed_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        else
+          @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        end
+      end
+    else
+      @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     end
 
   end
