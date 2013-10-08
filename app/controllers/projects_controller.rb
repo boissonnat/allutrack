@@ -13,8 +13,9 @@ class ProjectsController < ApplicationController
     feature = Label.new(title: 'feature', color: '#5bc0de')
     question = Label.new(title: 'question', color: '#f0ad4e')
     ui = Label.new(title: 'ui', color: '#cc317c')
+    wont_fix = Label.new(title: 'wont fix', color: '#000000')
 
-    @project.labels << [story, ready_for_review, bug, feature, ui, question]
+    @project.labels << [story, ready_for_review, bug, feature, ui, question, wont_fix]
 
     if @project.save
       # Create the membership
