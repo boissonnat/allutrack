@@ -6,10 +6,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: allutrack
+  database: ec2-107-20-220-11.compute-1.amazonaws.com/ddngbpdogrlrqb
   pool: 5
-  username: postgres
-  password: merisak!
+  username: agzmcozencsxwu
+  password: MqwNYL7QUO3OuiL_Ey5_w2aLmv
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -17,15 +17,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: allutrack_test
+  database: ec2-107-20-220-11.compute-1.amazonaws.com/ddngbpdogrlrqb
   pool: 5
-  username: postgres
-  password: merisak!
+  username: agzmcozencsxwu
+  password: MqwNYL7QUO3OuiL_Ey5_w2aLmv
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: allutrack_production
+  database: ec2-107-20-220-11.compute-1.amazonaws.com/ddngbpdogrlrqb
   pool: 5
   username: agzmcozencsxwu
   password: MqwNYL7QUO3OuiL_Ey5_w2aLmv
