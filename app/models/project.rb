@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  validates :title, presence: true
+
   has_many :memberships, :dependent => :delete_all
   has_many :users, :through => :memberships
   has_many :issues
