@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131007185751) do
+ActiveRecord::Schema.define(version: 20131008091745) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["issue_id"], name: "index_comments_on_issue_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["issue_id"], name: "index_comments_on_issue_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "issues", force: true do |t|
     t.string   "title"
@@ -35,16 +38,16 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.integer  "milestone_id"
   end
 
-  add_index "issues", ["milestone_id"], name: "index_issues_on_milestone_id"
-  add_index "issues", ["project_id"], name: "index_issues_on_project_id"
-  add_index "issues", ["user_id"], name: "index_issues_on_user_id"
+  add_index "issues", ["milestone_id"], name: "index_issues_on_milestone_id", using: :btree
+  add_index "issues", ["project_id"], name: "index_issues_on_project_id", using: :btree
+  add_index "issues", ["user_id"], name: "index_issues_on_user_id", using: :btree
 
   create_table "issues_labels", id: false, force: true do |t|
     t.integer "issue_id", null: false
     t.integer "label_id", null: false
   end
 
-  add_index "issues_labels", ["issue_id", "label_id"], name: "index_issues_labels_on_issue_id_and_label_id"
+  add_index "issues_labels", ["issue_id", "label_id"], name: "index_issues_labels_on_issue_id_and_label_id", using: :btree
 
   create_table "labels", force: true do |t|
     t.string   "color"
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.string   "title"
   end
 
-  add_index "labels", ["project_id"], name: "index_labels_on_project_id"
+  add_index "labels", ["project_id"], name: "index_labels_on_project_id", using: :btree
 
   create_table "memberships", force: true do |t|
     t.datetime "created_at"
@@ -64,8 +67,8 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.integer  "role",       default: 1
   end
 
-  add_index "memberships", ["project_id"], name: "index_memberships_on_project_id"
-  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
+  add_index "memberships", ["project_id"], name: "index_memberships_on_project_id", using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
   create_table "milestones", force: true do |t|
     t.string   "title"
@@ -75,7 +78,7 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.datetime "updated_at"
   end
 
-  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id"
+  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title"
@@ -97,7 +100,6 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -106,12 +108,12 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.string   "invitation_for_project"
+    t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

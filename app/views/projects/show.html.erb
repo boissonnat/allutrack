@@ -117,7 +117,7 @@
                 <%end%>
               </li>
           <% end %>
-          <% User.invitation_not_accepted.where(invitation_for_project:@project.id).each do |contributor|%>
+          <% User.invitation_not_accepted.where(invitation_for_project:@project.id.to_s).each do |contributor|%>
               <li class="list-group-item small">
                 waiting for <%=contributor.email%>
                 <% if can? :resend_invitation_contributor, @project %>
