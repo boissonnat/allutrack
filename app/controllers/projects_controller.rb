@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
   # Read
   def show
     @project = Project.find(params[:id])
-    @issues = @project.issues
+    @issues = @project.issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     @milestones = @project.milestones
   end
 

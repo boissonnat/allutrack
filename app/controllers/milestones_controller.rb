@@ -22,10 +22,10 @@ class MilestonesController < ApplicationController
   # Read
   def show
     @milestone = Milestone.find(params[:id])
-    @issues = @milestone.issues
+    @issues = @milestone.issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     @closed_issues = Issue.where(status: STATUS[1], milestone_id: @milestone.id)
-    if @issues.count > 0
-      @progress = (@closed_issues.count * 100) / @issues.count
+    if @milestone.issues.count > 0
+      @progress = (@closed_issues.count * 100) / @milestone.issues.count
     else
       @progress = 0
     end

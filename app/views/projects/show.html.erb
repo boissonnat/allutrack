@@ -14,6 +14,7 @@
     <div class="row">
       <div class="col-md-12">
         <%= render 'issues/collection' %>
+        <%= will_paginate @issues %>
         <%= link_to t('helpers.actions.new_object', message:'Issue'), new_issue_path(:project_id => @project.id), :class => 'btn btn-default pull-right' %>
       </div>
     </div>

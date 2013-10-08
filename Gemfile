@@ -48,6 +48,8 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # Markdown
 gem 'redcarpet'
 
+gem 'will_paginate', '~> 3.0'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
