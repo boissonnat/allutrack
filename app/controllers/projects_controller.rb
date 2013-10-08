@@ -64,19 +64,25 @@ class ProjectsController < ApplicationController
     if params[:emails]
       number_of_contributors = 0
       number_of_invitations = 0
-      # Split emails by ';'
-      emails_as_array = params[:emails].split(";")
-      emails_as_array.each { |email|
+      # Trim and split emails by ';' into array
+      emails_as_array = params[:emails].gsub(/\s+/, "").split(";")
+      emails_as_array.each do |email|
         contributor = User.find_by_email(email)
+
         if contributor
-          @project.memberships.create(user_id: contributor.id, role: 2)
-          number_of_contributors = number_of_contributors + 1
+          # We have find the user in DB
+          if (contributor.invitation_sent_at && contributor.invitation_accepted_at) || contributor.invitation_sent_at.nil?
+            # We add the user as contributor only if he has no invitation or if the full invitation process has been done
+            @project.memberships.create(user_id: contributor.id, role: 2)
+            number_of_contributors = number_of_contributors + 1
+          end
+
         else
           # No user found, send him an invitation
           User.invite!(:email => email, invitation_for_project: @project.id)
           number_of_invitations = number_of_invitations + 1
         end
-      }
+      end
 
       if @project.save
         flash[:notice] =
@@ -89,10 +95,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def resend_invitation_contributor
+    if params[:user_email]
+      User.invite!(email: params[:user_email], invitation_for_project: @project.id)
+      flash[:notice] = 'Invitation resent successfully'
+    end
+    redirect_to @project
+  end
+
   def remove_contributor
     if params[:user_id]
       memberships = Membership.where(project_id: @project.id, user_id: params[:user_id])
-      for membership in memberships
+      memberships.each do |membership|
         membership.destroy
       end
     end

@@ -19,6 +19,7 @@ en:
       delete: "Delete"
       confirm: "Are you sure ?"
       cancel: "Cancel"
+      add: "Add"
       back: "Back"
 
   projects:

@@ -20,6 +20,9 @@ class Ability
     can :remove_contributor, Project do |project|
       project.memberships.find_by_role(1).user == user
     end
+    can :resend_invitation_contributor, Project do |project|
+      project.memberships.find_by_role(1).user == user
+    end
 
     ## Rights for Issues
     can :manage, Issue do |issue|

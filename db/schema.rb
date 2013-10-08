@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20131007185751) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-      t.string   "invitation_for_project"
+    t.string   "invitation_for_project"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

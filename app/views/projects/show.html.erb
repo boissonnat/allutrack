@@ -120,6 +120,13 @@
           <% User.invitation_not_accepted.where(invitation_for_project:@project.id).each do |contributor|%>
               <li class="list-group-item small">
                 waiting for <%=contributor.email%>
+                <% if can? :resend_invitation_contributor, @project %>
+                    <span class="small pull-right">
+                      <%=link_to resend_invitation_contributor_project_path(@project, user_email:contributor.email) do %>
+                        <i class="glyphicon glyphicon-send"></i>
+                      <%end%>
+                    </span>
+                <%end%>
               </li>
           <%end%>
         </ul>
@@ -139,16 +146,16 @@
             Labels
           </li>
           <%@project.labels.each do |label|%>
-              <li class="list-group-item">
+              <li class="list-group-item small">
                 <span class="label" style="background-color: <%=label.color%>"><%=label.title%></span>
                 <div class="pull-right">
-                  <ul class="list-inline small">
-                    <li>
+                  <ul class="list-inline">
+                    <li class="small">
                       <%=link_to edit_label_path(label.id) do %>
                         <i class="glyphicon glyphicon-edit"></i>
                       <%end%>
                     </li>
-                    <li>
+                    <li class="small">
                       <%= link_to label_path(label),
                                   :method => 'delete',
                                   :data => { :confirm => t('helpers.actions.confirm') } do%>

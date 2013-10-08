@@ -8,6 +8,8 @@ Allutrack::Application.routes.draw do
     post 'add_contributor', on: :member
     get 'remove_contributor', on: :member
     post 'remove_contributor', on: :member
+    get 'resend_invitation_contributor', on: :member
+    post 'resend_invitation_contributor', on: :member
   end
   resources :issues do
     get 'close', on: :member
