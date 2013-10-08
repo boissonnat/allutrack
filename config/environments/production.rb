@@ -77,4 +77,16 @@ Allutrack::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Config mailer
+  config.action_mailer.default_url_options = { :host => 'http://allutrack.herokuapp.com' }
+  ActionMailer::Base.smtp_settings = {
+      :address        => "smtp.sendgrid.net",
+      :port           => "587",
+      :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
+      :domain         => ENV['SENDGRID_DOMAIN'],
+      :enable_starttls_auto => true
+  }
 end
