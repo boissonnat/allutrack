@@ -6,10 +6,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: ddngbpdogrlrqb
+  database: allutrack
   pool: 5
-  username: agzmcozencsxwu
-  password: MqwNYL7QUO3OuiL_Ey5_w2aLmv
+  username: postgres
+  password: merisak!
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -17,15 +17,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: ddngbpdogrlrqb
+  database: allutrack_test
   pool: 5
-  username: agzmcozencsxwu
-  password: MqwNYL7QUO3OuiL_Ey5_w2aLmv
+  username: postgres
+  password: merisak!
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: ddngbpdogrlrqb
+  database: allutrack_production
   pool: 5
   username: agzmcozencsxwu
   password: MqwNYL7QUO3OuiL_Ey5_w2aLmv
