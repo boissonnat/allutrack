@@ -42,6 +42,9 @@ gem "cancan"
 
 gem 'devise_invitable'
 
+# Active admin
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 # Markdown
 gem 'redcarpet'
 
