@@ -134,6 +134,10 @@ class ProjectsController < ApplicationController
     redirect_to @project
   end
 
+  def generate_markdown
+    render 'generate_markdown'
+  end
+
   ## Helper methods
   def project_params
     params.require(:project).permit(:title, :text, :emails)

@@ -23,6 +23,7 @@ class Ability
     can :resend_invitation_contributor, Project do |project|
       project.memberships.find_by_role(1).user == user
     end
+    can :generate_markdown, Project
 
     ## Rights for Issues
     can :manage, Issue do |issue|

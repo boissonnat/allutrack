@@ -48,6 +48,8 @@
                                     project_path(@project),
                                     :method => 'delete',
                                     :data => { :confirm => t('helpers.actions.confirm') }%></li>
+                    <li class="divider"></li>
+                    <li><%=link_to 'Markdown', generate_markdown_project_path(@project)%></li>
 
                   </ul>
                 </div>

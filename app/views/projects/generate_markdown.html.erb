@@ -1,0 +1,30 @@
+<% content_for :title, "Generate markdown " + @project.title %>
+<div class="page-header">
+  <h3>Generate as markdown</h3>
+</div>
+<p>
+    Are you bored by typing your specifications under Word ? Great, me too !!
+</p>
+<p>
+  Use this awesome markdown generator in order to manage your issues once and distribute them to anyone
+</p>
+
+<pre>
+# <%=@project.title%>
+<%=@project.text%>
+
+## Overview of features
+| Name |
+| ---------- |
+  <%@project.issues.each do |issue|%>
+| <%=issue.title%> |
+  <%end%>
+
+## Feature in detail
+  <%@project.issues.each do |issue|%>
+
+### <%=issue.title%>
+
+<%=issue.body%>
+  <%end%>
+</pre>
