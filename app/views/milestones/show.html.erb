@@ -34,7 +34,9 @@
         </h3>
       </div>
       <div class="panel-body">
-        <b>Due to : <%=l @milestone.dueTo, format: :usual_date%></b>
+        <% if @milestone.dueTo %>
+            <b>Due to : <%=l @milestone.dueTo, format: :usual_date%></b>
+        <%end%>
         <div class="progress">
           <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=@progress%>%;">
             <span class="sr-only">60% Complete</span>

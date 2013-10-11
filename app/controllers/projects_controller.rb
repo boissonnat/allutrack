@@ -14,8 +14,11 @@ class ProjectsController < ApplicationController
     question = Label.new(title: 'question', color: '#f0ad4e')
     ui = Label.new(title: 'ui', color: '#cc317c')
     wont_fix = Label.new(title: 'wont fix', color: '#000000')
-
     @project.labels << [story, ready_for_review, bug, feature, ui, question, wont_fix]
+
+    # Add default milestone
+    no_milestone = Milestone.new(title: 'No milestone')
+    @project.milestones << no_milestone
 
     if @project.save
       # Create the membership

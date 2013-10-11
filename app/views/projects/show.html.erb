@@ -81,7 +81,12 @@
                  end
               %>
               <li class="list-group-item">
-                <b><%=link_to milestone.title, milestone_path(milestone)%></b><small> (<%=l milestone.dueTo, format: :usual_date%>)</small>
+                <b><%=link_to milestone.title, milestone_path(milestone)%></b>
+                <small>
+                  <%if milestone.dueTo %>
+                    (<%=l milestone.dueTo, format: :usual_date%>)
+                  <%end%>
+                </small>
                 <div class="progress">
                   <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=progress%>%;">
                     <span class="sr-only"><%=progress%>% Complete</span>
