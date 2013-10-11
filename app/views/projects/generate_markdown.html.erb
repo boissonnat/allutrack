@@ -3,28 +3,19 @@
   <h3>Generate as markdown</h3>
 </div>
 <p>
-    Are you bored by typing your specifications under Word ? Great, me too !!
+  The main goal of this feature is to generate for free a complete markdown representation of your project.
+  It could be really useful to generate full documentation on your future app !
 </p>
 <p>
-  Use this awesome markdown generator in order to manage your issues once and distribute them to anyone
+  All the issue that you have tagged as <span class="label label-info">Story</span> will be added to the markdown
+  generation.
 </p>
 
-<pre>
-# <%=@project.title%>
-<%=@project.text%>
+<form>
 
-## Overview of features
-| Name |
-| ---------- |
-  <%@project.issues.each do |issue|%>
-| <%=issue.title%> |
-  <%end%>
+      <textarea class="form-control" rows="20">
+<%=@markdown%>
+      </textarea>
 
-## Feature in detail
-  <%@project.issues.each do |issue|%>
+</form>
 
-### <%=issue.title%>
-
-<%=issue.body%>
-  <%end%>
-</pre>
