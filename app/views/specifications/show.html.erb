@@ -1,0 +1,19 @@
+<%- model_class = Specification -%>
+<% content_for :title, " Specification " + @specification.title %>
+
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li>
+        <%=link_to @specification.project.title, project_path(@specification.project)%>
+      </li>
+      <li class="active"><%=@specification.title%></li>
+    </ol>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= markdown(@specification.body) %>
+  </div>
+</div>

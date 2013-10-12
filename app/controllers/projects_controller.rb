@@ -134,30 +134,6 @@ class ProjectsController < ApplicationController
     redirect_to @project
   end
 
-  def generate_markdown
-    @markdown = '# '+@project.title + " # \n\n"
-    @markdown += @project.text + "\n\n"
-    @markdown += "## Overview of features ## \n\n"
-    @markdown += "| Name | \n\n"
-    @markdown += "| ---------- | \n\n"
-
-    label_story = @project.labels.where(title: 'story')
-    @project.issues.each do |issue|
-      if issue.labels.include?(label_story)
-        @markdown += "| " + issue.title + " |\n\n"
-      end
-    end
-    @markdown += "## Feature in detail ## \n\n"
-    @project.issues.each do |issue|
-      if issue.labels.include?(label_story)
-        @markdown += "### " + issue.title + " ### \n\n"
-        @markdown += issue.body + "\n\n"
-      end
-    end
-
-    render 'generate_markdown'
-  end
-
   ## Helper methods
   def project_params
     params.require(:project).permit(:title, :text, :emails)

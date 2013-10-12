@@ -49,8 +49,6 @@
                                     :method => 'delete',
                                     :data => { :confirm => t('helpers.actions.confirm') }%></li>
                     <li class="divider"></li>
-                    <li><%=link_to 'Markdown', generate_markdown_project_path(@project)%></li>
-
                   </ul>
                 </div>
             <%end%>
@@ -165,6 +163,43 @@
                     </li>
                     <li class="small">
                       <%= link_to label_path(label),
+                                  :method => 'delete',
+                                  :data => { :confirm => t('helpers.actions.confirm') } do%>
+                          <i class="glyphicon glyphicon-trash"></i>
+                      <%end%>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Specifications -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-group">
+          <li class="list-group-item  list-group-item-heading">
+            <% if can? :create, Specification%>
+                <%=link_to new_specification_path(:project_id => @project.id), :class => 'btn btn-info btn-xs pull-right' do%>
+                    <i class="glyphicon glyphicon-plus"></i>
+                <%end%>
+            <%end%>
+            Specifications
+          </li>
+          <%@project.specifications.each do |specification|%>
+              <li class="list-group-item small">
+                <%=link_to specification.title, specification_path(specification)%>
+                <div class="pull-right">
+                  <ul class="list-inline">
+                    <li class="small">
+                      <%=link_to edit_specification_path(specification.id) do %>
+                          <i class="glyphicon glyphicon-edit"></i>
+                      <%end%>
+                    </li>
+                    <li class="small">
+                      <%= link_to specification_path(specification),
                                   :method => 'delete',
                                   :data => { :confirm => t('helpers.actions.confirm') } do%>
                           <i class="glyphicon glyphicon-trash"></i>

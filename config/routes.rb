@@ -14,8 +14,6 @@ Allutrack::Application.routes.draw do
     post 'remove_contributor', on: :member
     get 'resend_invitation_contributor', on: :member
     post 'resend_invitation_contributor', on: :member
-    get 'generate_markdown', on: :member
-    post 'generate_markdown', on: :member
   end
   resources :issues do
     get 'close', on: :member
@@ -24,6 +22,7 @@ Allutrack::Application.routes.draw do
   end
   resources :milestones
   resources :labels
+  resources :specifications
 
   root 'index#index'
 

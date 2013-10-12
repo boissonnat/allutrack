@@ -1,5 +1,4 @@
 en:
-
   time:
       formats:
         usual_date: "%e %b, %Y"
@@ -42,7 +41,11 @@ en:
       title: "New Label"
     edit:
       title: "Edit label"
-
+  specifications:
+    new:
+      title: "New specification"
+    edit:
+      title: "Edit %{message}"
 
   activerecord:
     models:

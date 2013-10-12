@@ -1,0 +1,5 @@
+<% content_for :title, " Edit specification " + @specification.title %>
+<div class="page-header">
+  <h1><%=t '.title', message: @specification.title %></h1>
+</div>
+<%= render :partial => 'form' %>

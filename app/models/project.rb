@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :issues
   has_many :milestones
   has_many :labels
+  has_many :specifications
 
   public
     def author
