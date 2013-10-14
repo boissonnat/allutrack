@@ -10,15 +10,9 @@ class SpecificationsController < ApplicationController
       # Generate the markdown
       @specification.body = '# '+@specification.project.title + " \n\n"
       @specification.body += @specification.project.text + "\n\n"
-      @specification.body += "## Overview of features \n\n"
-      @specification.body += "| Name | \n\n"
-      @specification.body += "| ---------- | \n\n"
 
-      @specification.project.issues.each do |issue|
-        @specification.body += "| " + issue.title + " |\n\n"
-      end
       @specification.body += "## Feature in detail \n\n"
-      @specification.project.issues.each do |issue|
+      @specification.project.issues.sort_by{|e| e[:created_at]}.each do |issue|
           @specification.body += "### " + issue.title + " \n\n"
           @specification.body += issue.body + "\n\n"
       end
