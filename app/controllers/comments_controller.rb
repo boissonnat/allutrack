@@ -19,9 +19,9 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update_attributes(params[:issue])
+    if @comment.update_attributes(params[:comment])
       flash[:notice] = 'Successfully updated comment.'
-      redirect_to @issue
+      redirect_to @comment.issue
     else
       render 'edit'
     end
@@ -29,9 +29,10 @@ class CommentsController < ApplicationController
 
   # Delete
   def destroy
+    @issue = Issue.find(params[:issue_id])
     @comment.destroy
     flash[:notice] = 'Successfully destroyed comment.'
-    redirect_to @issue
+    redirect_to issue_path(@issue)
   end
 
   ## Helper methods

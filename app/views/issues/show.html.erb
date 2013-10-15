@@ -31,7 +31,7 @@
       <div class="panel-heading">
         <div class="pull-right">
           <% if can? :update, @issue %>
-              <%=link_to edit_issue_path(@issue) do %>
+              <%=link_to edit_issue_path(@issue), :class => 'small' do %>
                   <i class="glyphicon glyphicon-edit"></i>
               <%end%>
           <%end%>
@@ -40,7 +40,7 @@
               <%= link_to issue_path(@issue),
                           :method => 'delete',
                           :data => { :confirm => t('helpers.actions.confirm') },
-                          :class => 'btn btn-link' do %>
+                          :class => 'small' do %>
                   <i class="glyphicon glyphicon-trash"></i>
               <%end %>
           <%end%>
@@ -61,11 +61,38 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
+              <% if can? :update, comment %>
+                <span class="pull-right">
+                  <a href="#" class="small" onclick="editComment(<%=comment.id%>);">
+                    <i class="glyphicon glyphicon-edit"></i>
+                  </a>
+                  <%= link_to [comment.issue, comment],
+                              :method => 'delete',
+                              :data => { :confirm => t('helpers.actions.confirm') },
+                              :class => 'small' do %>
+                    <i class="glyphicon glyphicon-trash"></i>
+                  <%end%>
+                </span>
+              <%end%>
               <small>Commented by <b><%=comment.user.username%></b>, the <%=l @issue.created_at, format: :usual_date%></small>
             </h3>
           </div>
           <div class="panel-body">
-            <%= markdown(comment.body) %>
+            <div id="comment-<%=comment.id%>">
+              <%= markdown(comment.body) %>
+            </div>
+            <div class="invisible" id="edit-comment-<%=comment.id%>">
+              <%= form_for ([@issue, comment]) do |f| %>
+                  <div class="form-group">
+                    <%= f.text_area :body, :class => 'form-control' %>
+                  </div>
+
+                  <div class="form-group pull-right">
+                    <a class="btn btn-default" href="#" onclick="cancelComment(<%=comment.id%>)">Cancel</a>
+                    <%= f.submit 'Update', :class => 'btn btn-primary' %>
+                  </div>
+              <% end %>
+            </div>
           </div>
         </div>
     <%end%>
@@ -118,3 +145,21 @@
 
 
 <%= render 'shared/markdown_helper' %>
+
+
+<script>
+    function editComment(commentId){
+        var dvComment = $("#comment-"+commentId);
+        dvComment.addClass("invisible");
+        var dvEditComment = $("#edit-comment-"+commentId);
+        dvEditComment.removeClass("invisible");
+    }
+
+    function cancelComment(commentId){
+        var dvEditComment = $("#edit-comment-"+commentId);
+        dvEditComment.addClass("invisible");
+        var dvComment = $("#comment-"+commentId);
+        dvComment.removeClass("invisible");
+
+    }
+</script>
