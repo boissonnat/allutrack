@@ -1,0 +1,118 @@
+<!-- Modal :markdown helper -->
+<div class="modal fade" id="markdownHelper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Markdown Cheatsheet</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- First global row -->
+        <h5>Text</h5>
+        <div class="row">
+
+          <!-- Text -->
+          <div class="col-md-6">
+            <small>Headers</small>
+            <pre><code>
+# Heading 1
+## Heading 2
+###### Heading 6
+            </code></pre>
+          </div>
+
+          <!-- Emphasis -->
+          <div class="col-md-6">
+            <small>Emphasis</small>
+            <pre><code>
+Italics, with *asterisks*
+Bold, with **asterisks**
+Strikethrough ~~Scratch this.~~
+            </code></pre>
+          </div>
+        </div> <!-- End first global row -->
+
+        <!-- Second global row -->
+        <h5>
+          List<br/>
+          <small>In this example, extraneous spaces are shown with dots: ⋅</small>
+        </h5>
+        <div class="row">
+
+          <!-- List -->
+          <div class="col-md-6">
+            <small>Ordered list</small>
+            <pre><code>
+1. First ordered list item
+2. Another item
+⋅⋅1. sub-list
+            </code></pre>
+          </div>
+
+          <div class="col-md-6">
+            <small>Unordered list</small>
+            <pre><code>
+* Unordered list can use asterisks
+- Or minuses
++ Or pluses
+⋅⋅* sub-list
+            </code></pre>
+
+          </div>
+        </div> <!-- End Second global row -->
+
+        <!-- Third global row -->
+        <h5>Links</h5>
+        <div class="row">
+          <!-- Links -->
+          <div class="col-md-12">
+            <pre><code>
+[I'm an inline-style link](https://www.google.com)
+
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+
+[I'm a reference-style link][Arbitrary case-insensitive reference text]
+
+[I'm a relative reference to a repository file](../blob/master/LICENSE)
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself]
+
+link to issues [#3](3) works if you are in issue
+link to issues [#3](/issues/3) works everywhere
+
+Some text to show that the reference links can follow later.
+[arbitrary case-insensitive reference text]: https://www.mozilla.org
+[1]: http://slashdot.org
+[link text itself]: http://www.reddit.com
+            </code></pre>
+          </div>
+        </div> <!-- End Third global row -->
+
+        <!-- Fourth global row -->
+        <h5>Images</h5>
+        <div class="row">
+          <!-- Images -->
+          <div class="col-md-12">
+            <pre><code>
+Inline-style:
+![alt text](http://www.allutrack.com/logo.png "Logo Title Text 1")
+
+Reference-style:
+![alt text][logo]
+
+[logo]: http://www.allutrack.com/logo.png "Logo Title Text 2"
+            </code></pre>
+          </div> <!-- End Fourth global row -->
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
