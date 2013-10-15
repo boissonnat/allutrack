@@ -70,7 +70,11 @@
 
     <div class="form-group">
       <div class="col-md-offset-2 col-md-10">
-        <%= link_to t("helpers.actions.cancel"), issues_path, :class => 'btn btn-default' %>
+        <% if @issue.id? %>
+            <%= link_to t("helpers.actions.cancel"), issue_path(@issue), :class => 'btn btn-default' %>
+        <%else%>
+            <%= link_to t("helpers.actions.cancel"), project_path(@issue.project), :class => 'btn btn-default' %>
+        <%end%>
         <%= f.submit nil, :class => 'btn btn-primary' %>
       </div>
     </div>
