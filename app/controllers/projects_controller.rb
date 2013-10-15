@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
       # Create the membership
       @project.memberships.create(:user_id => current_user.id, :role => 1)
       flash[:notice] = 'Successfully created project.'
+      @project.create_activity :create, owner: current_user, project_id:@project.id
       redirect_to @project
     else
       render 'new'

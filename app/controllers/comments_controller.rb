@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       flash[:notice] = 'Successfully created comment.'
+      @comment.create_activity :create, owner: current_user, project_id:@comment.issue.project.id
       redirect_to @issue
     else
       redirect_to @issue

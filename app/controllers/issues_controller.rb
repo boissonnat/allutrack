@@ -17,6 +17,7 @@ class IssuesController < ApplicationController
     @issue.status = STATUS[0]
     if @issue.save
       flash[:notice] = 'Successfully created issue.'
+      @issue.create_activity :create, owner: current_user, project_id:@issue.project.id
       redirect_to @issue
     else
       render 'new'

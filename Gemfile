@@ -45,6 +45,9 @@ gem 'devise_invitable'
 # Active admin
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+# Notifications
+gem 'public_activity'
+
 # Markdown
 gem 'redcarpet'
 

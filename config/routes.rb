@@ -1,12 +1,13 @@
 Allutrack::Application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
-  #ActiveAdmin.routes(self)
-  #devise_for :users
-  #ActiveAdmin.routes(self)
   devise_for :users, :controllers => { :invitations => 'users/invitations' }
   ActiveAdmin.routes(self)
 
+  resources :activities
+
   resources :users
+
   resources :projects do
     get 'add_contributor', on: :member
     post 'add_contributor', on: :member
@@ -15,13 +16,17 @@ Allutrack::Application.routes.draw do
     get 'resend_invitation_contributor', on: :member
     post 'resend_invitation_contributor', on: :member
   end
+
   resources :issues do
     get 'close', on: :member
     get 'reopen', on: :member
     resources :comments
   end
+
   resources :milestones
+
   resources :labels
+
   resources :specifications
 
   root 'index#index'
