@@ -67,6 +67,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update_attributes(params[:project])
       flash[:notice] = 'Successfully updated project.'
+      @project.create_activity :update, owner: current_user, project_id:@project.id
       redirect_to @project
     else
       render 'edit'

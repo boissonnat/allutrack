@@ -39,6 +39,7 @@ class IssuesController < ApplicationController
     @projects = Project.all
     if @issue.update_attributes(params[:issue])
       flash[:notice] = 'Successfully updated issue.'
+      @issue.create_activity :update, owner: current_user, project_id:@issue.project.id
       redirect_to @issue
     else
       render 'edit'
