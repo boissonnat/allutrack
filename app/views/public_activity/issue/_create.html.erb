@@ -1,4 +1,19 @@
-added an issue to <%= link_to activity.trackable.project.title, activity.trackable.project %>
-<% if activity.project_id %>
-    Project : <%=activity.project_id%>
-<%end%>
+<td>
+  <!-- Icon -->
+  <i class="glyphicon glyphicon-tags text-muted big-icon"></i>
+</td>
+<td>
+  <div class="row">
+    <p class="small text-muted">
+      <%=l activity.created_at, format: :usual_date%>
+    </p>
+    <p>
+      <% if activity.owner == current_user %>
+          <strong>You</strong>
+      <%else%>
+          <strong><%= activity.owner.username %></strong>
+      <%end%>
+      opened issue <%= link_to activity.trackable.title, activity.trackable %> at <%= link_to activity.trackable.project.title, activity.trackable.project %>
+    </p>
+  </div>
+</td>

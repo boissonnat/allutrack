@@ -1,6 +1,4 @@
 class Project < ActiveRecord::Base
-  include PublicActivity::Common
-  #tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   validates :title, presence: true
 

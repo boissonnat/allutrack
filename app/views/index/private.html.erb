@@ -9,11 +9,24 @@
 
 
 <div class="row">
+  <!-- Display notifications -->
   <div class="col-md-9">
-    <%= render 'issues/collection' %>
-    <%= will_paginate @issues %>
+    <table class="table table-condensed">
+      <tbody>
+      <% @activities.each do |activity| %>
+          <tr>
+            <%= render_activity(activity) %>
+          </tr>
+      <%end%>
+      </tbody>
+    </table>
+
+    <%= link_to 'See all activities', activities_path, :class => 'btn btn-default col-md-12' %>
+
+
   </div>
 
+  <!-- Display projects list -->
   <div class="col-md-3">
     <div class="row">
       <div class="col-md-12">
