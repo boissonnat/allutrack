@@ -67,11 +67,15 @@ class IssuesController < ApplicationController
         if params[:status] == 'close'
           @issues = @all_closed_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
         else
-          @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+          if params[:status] == 'all'
+            @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+          else
+            @issues = @all_opened_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+          end
         end
       end
     else
-      @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+      @issues = @all_opened_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     end
   end
 

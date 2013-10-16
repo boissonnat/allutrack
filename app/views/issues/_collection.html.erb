@@ -6,13 +6,8 @@
   <!-- Default panel contents -->
   <div class="panel-heading">
     <ul class="list-inline">
-      <li class="<%=params[:status].nil? ? 'active small' : 'small'%>">
-        <%=link_to url_for() do %>
-            All (<%=@all_issues.count%>)
-        <%end%>
-      </li>
 
-      <li class="<%=params[:status] == 'open' ? 'active small' : 'small'%>">
+      <li class="<%=params[:status] == 'open' || params[:status].nil?  ? 'active small' : 'small'%>">
         <%=link_to url_for(status:'open') do %>
             Open (<%=@all_opened_issues.count%>)
         <%end%>
@@ -21,6 +16,12 @@
       <li class="<%=params[:status] == 'close' ? 'active small' : 'small'%>">
         <%=link_to url_for(status:'close') do %>
             Close (<%=@all_closed_issues.count%>)
+        <%end%>
+      </li>
+
+      <li class="<%=params[:status] == 'all' ? 'active small' : 'small'%>">
+        <%=link_to url_for(status:'all') do %>
+            All (<%=@all_issues.count%>)
         <%end%>
       </li>
     </ul>
