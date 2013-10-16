@@ -73,7 +73,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     flash[:notice] = 'Successfully destroyed project.'
-    redirect_to projects_path
+    redirect_to root_path
   end
 
   # List

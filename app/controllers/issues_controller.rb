@@ -47,20 +47,39 @@ class IssuesController < ApplicationController
 
   # Delete
   def destroy
+    @project = @issue.project
     @issue.destroy
     flash[:notice] = 'Successfully destroyed issue.'
-    redirect_to issues_path
+    redirect_to project_path(@project)
   end
 
   # List
   def index
-    @issues = Issue.where(project_id: current_user.projects )
+    @all_issues = Issue.where(project_id: current_user.projects )
+    @all_opened_issues = @all_issues.where(status: STATUS[0])
+    @all_closed_issues = @all_issues.where(status: STATUS[1])
+
+
+    if params[:status]
+      if params[:status] == 'open'
+        @issues = @all_opened_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+      else
+        if params[:status] == 'close'
+          @issues = @all_closed_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        else
+          @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+        end
+      end
+    else
+      @issues = @all_issues.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
+    end
   end
 
   def close
     @issue.status = STATUS[1]
     if @issue.save
       flash[:notice] = 'Successfully closed issue.'
+      @issue.create_activity :close, owner: current_user, project_id:@issue.project.id
       redirect_to @issue
     end
   end
@@ -69,6 +88,7 @@ class IssuesController < ApplicationController
     @issue.status = STATUS[0]
     if @issue.save
       flash[:notice] = 'Successfully closed issue.'
+      @issue.create_activity :reopen, owner: current_user, project_id:@issue.project.id
       redirect_to @issue
     end
   end

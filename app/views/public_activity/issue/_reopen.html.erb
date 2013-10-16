@@ -1,6 +1,6 @@
 <td>
   <!-- Icon -->
-  <i class="glyphicon glyphicon-tags text-muted big-icon"></i>
+  <i class="glyphicon glyphicon-refresh text-muted big-icon"></i>
 </td>
 <td>
   <div class="row">
@@ -15,7 +15,7 @@
           <strong><%= activity.owner.username %></strong>
       <%end%>
 
-      opened issue
+      reopened issue
 
       <!-- If the issue has been removed, display "warning message" instead of link to the issue -->
       <% if activity.trackable %>
@@ -28,10 +28,10 @@
               at <strong>project</strong> which has since been removed
           <% end %>
 
-
-    <% else %>
+      <% else %>
           which has since been removed
       <% end %>
+
 
 
     </p>

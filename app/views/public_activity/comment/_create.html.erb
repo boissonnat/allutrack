@@ -8,13 +8,40 @@
       <%=l activity.created_at, format: :usual_date%>
     </p>
     <p>
+      <!-- If it's an activity of the current user display 'You' -->
       <% if activity.owner == current_user %>
-        <strong>You</strong>
+          <strong>You</strong>
       <%else%>
-        <strong><%= activity.owner.username %></strong>
+          <strong><%= activity.owner.username %></strong>
       <%end%>
-      commented issue <%= link_to activity.trackable.issue.title, activity.trackable.issue %>
-      at <%= link_to activity.trackable.issue.project.title, activity.trackable.issue.project %>
+
+      <!-- If the comment has been removed, display "warning message" instead of link to the issue -->
+      <% if activity.trackable %>
+          commented issue
+
+          <!-- If the issue has been removed, display "warning message" instead of link to the issue -->
+          <% if activity.trackable.issue %>
+              <%= link_to activity.trackable.issue.title, activity.trackable.issue %>
+
+              <!-- If the project has been removed, display "warning message" instead of link to the project -->
+              <% if activity.trackable.issue.project %>
+                  at <%= link_to activity.trackable.issue.project.title, activity.trackable.issue.project %>
+              <% else %>
+                  at <strong>project</strong> which has since been removed
+              <% end %>
+
+          <% else %>
+              which has since been removed
+          <% end %>
+
+
+      <% else %>
+          added a comment which has since been removed
+      <% end %>
+
+
+
+
     </p>
   </div>
 </td>
