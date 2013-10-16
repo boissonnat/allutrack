@@ -8,9 +8,11 @@ class SpecificationsController < ApplicationController
       @specification.project = Project.find(params[:project_id])
 
       # Generate the markdown
+      ## Add project title and project description
       @specification.body = '# '+@specification.project.title + " \n\n"
       @specification.body += @specification.project.text + "\n\n"
 
+      ## Add all issues description
       @specification.body += "## Feature in detail \n\n"
       @specification.project.issues.sort_by{|e| e[:created_at]}.each do |issue|
           @specification.body += "### " + issue.title + " \n\n"
@@ -43,6 +45,7 @@ class SpecificationsController < ApplicationController
   def update
     if @specification.update_attributes(params[:specification])
       flash[:notice] = 'Successfully updated specification.'
+      @specification.create_activity :update, owner: current_user, project_id:@specification.project.id
       redirect_to @specification.project
     else
       render 'edit'
