@@ -4,7 +4,7 @@
 @import "jquery.ui.all";
 @import "twitter/bootstrap";
 
-@import "prettify.css";
+@import "google-prettify/prettify.css";
 
 /*
   Import specific files corresponding to controllers
@@ -20,7 +20,7 @@ body {
 }
 
 /*
-  remove the paddings on the navBar in order to align
+  remove the padding on the navBar in order to align
   element with the rest of the page
 -----------------------------------------------------------*/
 .navbar-collapse {
