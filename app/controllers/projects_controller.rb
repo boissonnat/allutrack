@@ -97,6 +97,8 @@ class ProjectsController < ApplicationController
             # We add the user as contributor only if he has no invitation or if the full invitation process has been done
             @project.memberships.create(user_id: contributor.id, role: 2)
             number_of_contributors = number_of_contributors + 1
+            # Add join activity on project
+            @project.create_activity :join, owner: contributor, project_id:@project.id
           end
 
         else
@@ -127,10 +129,13 @@ class ProjectsController < ApplicationController
 
   def remove_contributor
     if params[:user_id]
+      contributor = User.find(params[:user_id])
       memberships = Membership.where(project_id: @project.id, user_id: params[:user_id])
       memberships.each do |membership|
         membership.destroy
       end
+      # Add left activity on project
+      @project.create_activity :left, owner: contributor, project_id:@project.id
     end
     redirect_to @project
   end

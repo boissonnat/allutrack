@@ -1,6 +1,6 @@
 <td>
   <!-- Icon -->
-  <i class="glyphicon glyphicon-tags text-muted big-icon"></i>
+  <i class="glyphicon glyphicon-log-out text-muted big-icon"></i>
 </td>
 <td>
   <div class="row">
@@ -14,24 +14,16 @@
       <%else%>
           <strong><%= activity.owner.username %></strong>
       <%end%>
-
-      opened issue
+      left the project
 
       <!-- If the issue has been removed, display "warning message" instead of link to the issue -->
       <% if activity.trackable %>
           <%= link_to activity.trackable.title, activity.trackable %>
-
-          <!-- If the project has been removed, display "warning message" instead of link to the project -->
-          <% if activity.trackable.project %>
-              at <%= link_to activity.trackable.project.title, activity.trackable.project %>
-          <% else %>
-              at <strong>project</strong> which has since been removed
-          <% end %>
-
       <% else %>
           which has since been removed
       <% end %>
 
     </p>
   </div>
+</td>
 </td>

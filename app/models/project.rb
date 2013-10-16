@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  include PublicActivity::Common
 
   validates :title, presence: true
 

@@ -24,6 +24,7 @@ class SpecificationsController < ApplicationController
   def create
     if @specification.save
       flash[:notice] = 'Successfully created specification.'
+      @specification.create_activity :create, owner: current_user, project_id:@specification.project.id
       redirect_to @specification.project
     else
       render 'new'
