@@ -1,0 +1,29 @@
+<td>
+  <!-- Icon -->
+  <i class="glyphicon glyphicon-plus text-muted big-icon"></i>
+</td>
+<td>
+  <div class="row">
+    <p class="small text-muted">
+      <%=l activity.created_at, format: :usual_date%>
+    </p>
+    <p>
+      <!-- If it's an activity of the current user display 'You' -->
+      <% if activity.owner == current_user %>
+          <strong>You</strong>
+      <%else%>
+          <strong><%= activity.owner.username %></strong>
+      <%end%>
+      create project
+
+      <!-- If the issue has been removed, display "warning message" instead of link to the issue -->
+      <% if activity.trackable %>
+          <%= link_to activity.trackable.title, activity.trackable %>
+      <% else %>
+          which has since been removed
+      <% end %>
+
+    </p>
+  </div>
+</td>
+</td>

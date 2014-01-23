@@ -17,3 +17,6 @@
 
 # Ignore IDEA files
 .idea/
+
+# Ignore MacOSX file
+.DS_Store

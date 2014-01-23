@@ -8,8 +8,8 @@ development:
   encoding: unicode
   database: allutrack
   pool: 5
-  username: postgres
-  password: merisak!
+  username: allutrack
+  password: allutrack
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
