@@ -2,8 +2,13 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
+## Ruby / Rails
+############################################################################################
+# Specify Ruby version (useful for heroku)
+ruby '2.1.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.4'
 
 # Use Postgres as the database for Active Record
 gem 'pg'
