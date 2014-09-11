@@ -19,8 +19,8 @@ test:
   encoding: unicode
   database: allutrack_test
   pool: 5
-  username: postgres
-  password: merisak!
+  username: allutrack
+  password: allutrack
 
 default: &default
   adapter: postgresql

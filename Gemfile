@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-
 ## Ruby / Rails
 ############################################################################################
 # Specify Ruby version (useful for heroku)
@@ -41,7 +39,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'devise', '~> 3.0.1'
+gem 'devise', '~> 3.2'
 
 gem "cancan"
 
