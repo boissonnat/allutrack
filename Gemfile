@@ -3,10 +3,14 @@ source 'https://rubygems.org'
 ## Ruby / Rails
 ############################################################################################
 # Specify Ruby version (useful for heroku)
-ruby '2.1.1'
+ruby '1.9.3'
+
+gem 'tzinfo-data'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.5'
+
+
 
 # Use Postgres as the database for Active Record
 gem 'pg'
@@ -58,15 +62,6 @@ gem 'will_paginate', '~> 3.0'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
-
-group :development do
-  gem 'awesome_print'
-  gem 'quiet_assets'
-  gem 'sextant'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request'
-end
 
 # Use unicorn as the app server
 # gem 'unicorn'
